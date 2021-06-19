@@ -10,6 +10,9 @@
         &nbsp; > &nbsp;<a href="{{ url_for('main_page') }}">Member's Page</a>&nbsp;<i
             class="" data-position="" role="" data-tooltip="">Information</i>
     </h6>
+    {% if call_or_get(current_user.is_authenticated) %}
+    <a href="{{ url_for('add_venue')}}">Add Venue</a>
+    {% endif %}
     <table>
         <tr class="white-text blue darken-4">
             <th>Name</th>
