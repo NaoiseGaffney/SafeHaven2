@@ -104,15 +104,16 @@ user_manager = UserManager(app, db, User)
 # --- // Safe Havens Main Routes (Endpoints): CRUD.
 @app.route("/")
 @app.route("/index")
+@app.route("/index.htm")
 @app.route("/index.html")
 def home_page():
     """
     Landing/Home Page, accessible before sign in/login. If logged in, user is redirected to the Member's Page.
     At first access/touch the user 'admin' is created using environment variables for the password and email address.
-    The user creation is here as it will be created twice on Heroku if placed in the main code.
+    The admin user creation is here as it will be created twice on Heroku if placed in the main code.
     """
     if current_user.is_authenticated:
-        return redirect(url_for("member_page"))
+        return redirect(url_for("main_page"))
 
 
     # Create admin user as first/default user, if admin does not exist.
@@ -146,13 +147,12 @@ def home_page():
 
 
 @app.route("/members")
-@login_required
-def member_page():
+def main_page():
     """
     The "R" in CRUD, a list of all venues.
     """
     venues_list = Venue.objects()
-    return render_template("members.html", venues_list=venues_list)
+    return render_template("main.html", venues_list=venues_list)
 
 
 
