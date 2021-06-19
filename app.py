@@ -47,7 +47,7 @@ db = MongoEngine(app)
 # Use Flask Sessions with Mongoengine
 app.session_interface = MongoEngineSessionInterface(db)
 
-# --- // Classes -> MongoDB Collections: User.
+# --- // Classes -> MongoDB Collections: User, Place.
 # Flask-User User Class (Collection) extended with email_confirmed_at
 # Added username indexing and background-indexing for performance
 class User(db.Document, UserMixin):
@@ -75,6 +75,27 @@ class User(db.Document, UserMixin):
     }
 
 
+# Venue Class (Collection) containing the fields related to the venues that users can view, create, and update.
+# Delete own venue creation?
+class Venue(db.Document):
+    name = db.StringField(default="")
+    location = db.StringField(default="")   # Address or lat/lon?
+
+    # Key Identifiers (Ed's list)
+    pinkwashing = db.BooleanField(default=False)
+    identity = db.BooleanField(default=True)
+    inclusive = db.BooleanField(default=True)
+
+    # Relationships  (Tags: default and/or user created?)
+    tags = db.ListField(db.StringField(), default=["LGBTQ+"])
+
+    meta = {
+        "auto_create_index": True,
+        "index_background": True,
+        "indexes": ["name", "location"],
+    }
+
+
 # Setup Flask-User and specify the User data-model
 user_manager = UserManager(app, db, User)
 
@@ -90,8 +111,8 @@ def home_page():
     The user creation is here as it will be created twice on Heroku if placed in the main code.
     """
     if current_user.is_authenticated:
-        # return redirect(url_for("member_page"))
-        return render_template_string("This is the Member's Area. Welcome!")
+        return redirect(url_for("member_page"))
+
 
     # Create admin user as first/default user, if admin does not exist.
     # Password and e-mail are set using environment variables.
@@ -121,6 +142,17 @@ def home_page():
     # return render_template("index.html")
     return render_template("flask_user_layout.html")
     return render_template_string("This is the Home/Landing Page. Welcome!")
+
+
+@app.route("/members")
+@login_required
+def member_page():
+    """
+    The "R" in CRUD, a list of all venues.
+    """
+    venues_list = Venue.objects()
+    return render_template("members.html", venues_list=venues_list)
+
 
 
 if __name__ == "__main__":
