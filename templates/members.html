@@ -10,9 +10,30 @@
         &nbsp; > &nbsp;<a href="{{ url_for('member_page') }}">Member's Page</a>&nbsp;<i
             class="" data-position="" role="" data-tooltip="">Information</i>
     </h6>
-    </div>
-
-    
-
+    <table>
+        <tr class="white-text blue darken-4">
+            <th>Name</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Pinkwashing</th>
+            <th>Identity</th>
+            <th>Inclusive</th>
+            <th>Tags</th>
+        </tr>
+        {% for venue in venues_list %}
+        <tr class="{{loop.cycle('white','blue-grey lighten-5')}}">
+            <td>{{venue.name}}</td>
+            <td>{{venue.type}}</td>
+            <td>{{venue.location}}</td>
+            <td>{{venue.pinkwashing}}</td>
+            <td>{{venue.identity}}</td>
+            <td>{{venue.inclusive}}</td>
+            <td>{{venue.tags}}</td>
+            {% for number in range(venue.tags|count) %}
+            <p>{{venue.tags[number]}}</p>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 {% endblock %}

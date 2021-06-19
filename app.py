@@ -79,6 +79,7 @@ class User(db.Document, UserMixin):
 # Delete own venue creation?
 class Venue(db.Document):
     name = db.StringField(default="")
+    type = db.StringField(choices=["Bar/Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel"])
     location = db.StringField(default="")   # Address or lat/lon?
 
     # Key Identifiers (Ed's list)
