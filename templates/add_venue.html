@@ -1,0 +1,7 @@
+{% extends "flask_user_layout.html" %}
+{% block content %}
+<h1>Add a Venue</h1>
+{% for tag in sorted_tags %}
+<p>{{tag}}</p>
+{% endfor %}
+{% endblock %}

@@ -26,6 +26,8 @@ from flask import (
     flash,
     session,
 )
+from mongoengine.fields import ReferenceField
+from flask_wtf.csrf import CSRFProtect, CSRFError
 
 from config import ConfigClass
 
@@ -87,8 +89,9 @@ class Venue(db.Document):
     identity = db.BooleanField(default=True)
     inclusive = db.BooleanField(default=True)
 
-    # Relationships  (Tags: default and/or user created?)
+    # Relationships  (Tags: default and/or user created?) (User created the Venue)
     tags = db.ListField(db.StringField(), default=["LGBTQ+"])
+    user = db.ReferenceField(User)
 
     meta = {
         "auto_create_index": True,
@@ -146,13 +149,52 @@ def home_page():
     return render_template_string("This is the Home/Landing Page. Welcome!")
 
 
-@app.route("/members")
+@app.route("/main")
 def main_page():
     """
     The "R" in CRUD, a list of all venues.
     """
     venues_list = Venue.objects()
     return render_template("main.html", venues_list=venues_list)
+
+
+@app.route("/add_venue")
+@login_required
+@app.errorhandler(CSRFError)
+def add_venue():
+    """
+    Preparation for "C" in CRUD, add a venue. Present the form.
+    """
+    tags = {"LGBTQ+", "Tag 2", "Tag 3", "Tag 4", "Tag 5"}
+    sorted_tags = sorted(tags)
+    print(sorted_tags)
+    return render_template("add_venue.html", sorted_tags=sorted_tags)
+
+
+@app.route("/save_venue", methods=["POST"])
+@login_required
+@app.errorhandler(CSRFError)
+def save_venue():
+    """
+    The "C" in CRUD, save the filled in venue form.
+    """
+    venue = Venue(
+        name=request.form.get("name"),
+        type=request.form.get("type"),
+        location=request.form.get("location"),
+        pinkwashing=request.form.get("pinkwashing"),
+        identity=request.form.get("identity"),
+        inclusive=request.form.get("inclusive"),
+        tags=request.form.get("tags"),
+        user=User.username                              # current_user.username
+    )
+
+    try:
+        venue.save()
+        flash("The venue was saved!", "success")
+    except Exception:
+        flash("The venue was NOT saved!", "danger")
+    return redirect(url_for("main_page"))
 
 
 
