@@ -274,25 +274,25 @@ def save_review(id):
 # --- // Error Handlers for 400 CSRF Error (Bad Request), 404 Page Not Found, 405 Method Not Allowed, and 500 Internal Server Error.
 @app.errorhandler(CSRFError)
 def handle_csrf_error(error):
-    excuse = "Apologies, the Safe Havens Security Detail have omitted to secure this page! We're calling them back from their lunch-break to fix this. Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    excuse = "Apologies, the Safe Havens Security Detail have omitted to secure this page! We're calling them back from their lunch-break to fix this. Please click on [ Home ] to go to the Home Page, or click on [ Sign Out ] below."
     return render_template("oops.html", error=error.description, excuse=excuse, error_type="Client: 400 - Bad Request")
 
 
 @app.errorhandler(404)
 def not_found(error):
-    excuse = "Apologies, our Staff are lost in the Safe Havens! Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    excuse = "Apologies, our Staff are lost in the Safe Havens! Please click on [ Home ] to go to the Home Page, or click on [ Sign Out ] below."
     return render_template("oops.html", error=error, excuse=excuse, error_type="Client: 404 - Page Not Found")
 
 
 @app.errorhandler(405)
 def not_found(error):
-    excuse = "Apologies, our Staff won't allow you to do this! Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    excuse = "Apologies, our Staff won't allow you to do this! Please click on [ Home ] to go to the Home Page, or click on [ Sign Out ] below."
     return render_template("oops.html", error=error, excuse=excuse, error_type="Client: 405 - Method Not Allowed")
 
 
 @app.errorhandler(500)
 def internal_error(error):
-    excuse = "Apologies, something serious occurred and the Staff are working on resolving the issue! This section is cordoned off for now. Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    excuse = "Apologies, something serious occurred and the Staff are working on resolving the issue! This section is cordoned off for now. Please click on [ Home ] to go to the Home Page, or click on [ Sign Out ] below."
     return render_template("oops.html", error=error, excuse=excuse, error_type="Server: 500 - Internal Server Error")
 
 
