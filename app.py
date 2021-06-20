@@ -82,21 +82,27 @@ class User(db.Document, UserMixin):
 class Venue(db.Document):
     name = db.StringField(default="")
     type = db.StringField(choices=["Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
-    location = db.StringField(default="")   # Address or lat/lon?
+    address = db.StringField(default="")
+    post_code = db.StringField(default="")
+    city = db.StringField(default="")
+    country = db.StringField(default="")
 
     # Key Identifiers (Ed's list)
     pinkwashing = db.BooleanField(default=False)
-    identity = db.BooleanField(default=True)
-    inclusive = db.BooleanField(default=True)
+    identity = db.BooleanField(default=False)
+    inclusive = db.BooleanField(default=False)
 
     # Relationships  (Tags: default and/or user created?) (User created the Venue)
-    tags = db.ListField(db.StringField(), default=["LGBTQ+"])
-    user = db.ReferenceField(User)
+    tags_LGBTQ = db.BooleanField(default=False)
+    tags_Trans = db.BooleanField(default=False)
+    tags_Youth = db.BooleanField(default=False)
+    tags_Shelter = db.BooleanField(default=False)
+    user = db.StringField(default="")
 
     meta = {
         "auto_create_index": True,
         "index_background": True,
-        "indexes": ["name", "location"],
+        "indexes": ["name", "city", "country"],
     }
 
 
@@ -143,10 +149,7 @@ def home_page():
             app.logger.critical(
                 "'admin' account is created at startup if the user doesn't exist: [FAILURE] - (index.html)."
             )
-
-    # return render_template("index.html")
     return render_template("home.html")
-    return render_template_string("This is the Home/Landing Page. Welcome!")
 
 
 @app.route("/main")
@@ -165,7 +168,7 @@ def add_venue():
     """
     Preparation for "C" in CRUD, add a venue. Present the form.
     """
-    tags = {"LGBTQ+", "Tag 2", "Tag 3", "Tag 4", "Tag 5"}
+    tags = {"LGBTQ+", "Trans", "Youth", "Shelter"}
     sorted_tags = sorted(tags)
     print(sorted_tags)
 
@@ -188,12 +191,18 @@ def save_venue():
     venue = Venue(
         name=request.form.get("name"),
         type=request.form.get("type"),
-        location=request.form.get("location"),
+        address=request.form.get("address"),
+        post_code=request.form.get("post_code"),
+        city=request.form.get("city"),
+        country=request.form.get("country"),
         pinkwashing=request.form.get("pinkwashing"),
         identity=request.form.get("identity"),
         inclusive=request.form.get("inclusive"),
-        tags=request.form.get("tags"),
-        user=User.username                              # current_user.username
+        tags_LGBTQ=request.form.get("tags_LGBTQ"),
+        tags_Trans=request.form.get("tags_Trans"),
+        tags_Youth=request.form.get("tags_Youth"),
+        tags_Shelter=request.form.get("tags_Shelter"),
+        user=current_user.username
     )
 
     try:
