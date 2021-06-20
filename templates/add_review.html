@@ -1,0 +1,62 @@
+{% extends "flask_user_layout.html" %}
+{% block extra_title %} - Add Venue{% endblock %}
+{% block content %}
+
+<div class="container">
+    <form action="{{ url_for('save_review') }}" method="POST" class="col s12">
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+        <div class="mb-3 form-check">
+            <label for="text_field" class="form-label">Review</label>
+            <textarea id="text_field" name="text_field" maxlength="2000"
+            class="form-control"></textarea>
+            <div id="text_fieldHelp" class="form-text">Please enter your review of this venue.</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="pinkwashing">Pinkwashing</label>
+            <input class="form-check-input" type="checkbox" id="pinkwashing" name="pinkwashing"
+                aria-describedby="Pinkwashing">
+            <div id="pinkwashingHelp" class="form-text">Pinkwashing or true LGBTQ+ supporter.</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="identity">Identity</label>
+            <input class="form-check-input" type="checkbox" id="identity" name="identity" aria-describedby="Identity">
+            <div id="identityHelp" class="form-text">Respect identity, use of preferred pronouns, gender-neutral
+                facilities?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="diverse">Inclusive</label>
+            <input class="form-check-input" type="checkbox" id="inclusive" name="inclusive"
+                aria-describedby="Inclusive">
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_LGBTQ">Tag: LGBTQ+</label>
+            <input class="form-check-input" type="checkbox" id="tags_LGBTQ" name="tags_LGBTQ"
+                aria-describedby="tags_LGBTQ">
+            <div id="lgbtqHelp" class="form-text">Tag: LGBTQ+ friendly?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_Trans">Tag: Trans</label>
+            <input class="form-check-input" type="checkbox" id="tags_Trans" name="tags_Trans"
+                aria-describedby="tags_Trans">
+            <div id="transHelp" class="form-text">Tag: Trans friendly?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_Youth">Tag: Youth</label>
+            <input class="form-check-input" type="checkbox" id="tags_Youth" name="tags_Youth"
+                aria-describedby="tags_Youth">
+            <div id="lgbtqHelp" class="form-text">Tag: Youth-focused?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_Shelter">Tag: Shelter</label>
+            <input class="form-check-input" type="checkbox" id="tags_Shelter" name="tags_Shelter"
+                aria-describedby="tags_Shelter">
+            <div id="lgbtqHelp" class="form-text">Tag: Provides shelter?</div>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary" type="submit" name="action">Add Venue
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -100,23 +100,35 @@ class Venue(db.Document):
     post_code = db.StringField(default="")
     city = db.StringField(default="")
     country = db.StringField(default="")
-
-    # Key Identifiers (Ed's list)
-    pinkwashing = db.BooleanField(default=False)
-    identity = db.BooleanField(default=False)
-    inclusive = db.BooleanField(default=False)
-
-    # Relationships  (Tags: default and/or user created?) (User created the Venue)
-    tags_LGBTQ = db.BooleanField(default=False)
-    tags_Trans = db.BooleanField(default=False)
-    tags_Youth = db.BooleanField(default=False)
-    tags_Shelter = db.BooleanField(default=False)
     user = db.StringField(default="")
 
     meta = {
         "auto_create_index": True,
         "index_background": True,
         "indexes": ["name", "city", "country"],
+    }
+
+
+class Review(db.Document):
+    text_field = db.StringField(default="", maxlength=2000)
+    user = db.StringField(default="")
+    venue_id = db.ObjectIdField(Venue)
+
+    # Key Identifiers (Ed's list)
+    pinkwashing = db.BooleanField(default=False)
+    identity = db.BooleanField(default=False)
+    inclusive = db.BooleanField(default=False)
+
+    # Relationships (Tags: default)
+    tags_LGBTQ = db.BooleanField(default=False)
+    tags_Trans = db.BooleanField(default=False)
+    tags_Youth = db.BooleanField(default=False)
+    tags_Shelter = db.BooleanField(default=False)
+
+    meta = {
+        "auto_create_index": True,
+        "index_background": True,
+        "indexes": ["venue_id"],
     }
 
 
@@ -208,6 +220,34 @@ def save_venue():
         post_code=request.form.get("post_code"),
         city=request.form.get("city"),
         country=request.form.get("country"),
+        user=current_user.username
+    )
+
+    try:
+        venue.save()
+        flash("The venue was saved!", "success")
+    except Exception:
+        flash("The venue was NOT saved!", "danger")
+    return redirect(url_for("main_page"))
+
+
+@app.route("/create_review/<int:id>")
+@login_required
+@app.errorhandler(CSRFError)
+def create_review(id):
+    pass
+
+
+@app.route("/save_review/<int:id>", methods=["POST"])
+@login_required
+@app.errorhandler(CSRFError)
+def save_review(id):
+    """
+    The "C" in CRUD, save the filled in venue review form.
+    """
+    review = Review(
+        text_field=request.form.get("text_field"),
+        venue_id=id,
         pinkwashing=request.form.get("pinkwashing"),
         identity=request.form.get("identity"),
         inclusive=request.form.get("inclusive"),
