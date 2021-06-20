@@ -7,8 +7,7 @@
         {% else %}
         <a href="{{ url_for('home_page')}}">Home</a>
         {% endif %}
-        &nbsp; > &nbsp;<a href="{{ url_for('main_page') }}">Member's Page</a>&nbsp;<i
-            class="" data-position="" role="" data-tooltip="">Information</i>
+        &nbsp; > &nbsp;<a href="{{ url_for('main_page') }}">Member's Page</a>
     </h6>
     {% if call_or_get(current_user.is_authenticated) %}
     <a href="{{ url_for('add_venue')}}">Add Venue</a>
@@ -21,15 +20,17 @@
             <th>Post Code</th>
             <th>City</th>
             <th>Country</th>
+            <th>URL</th>
         </tr>
         {% for venue in venues_list %}
         <tr class="{{loop.cycle('white','blue-grey lighten-5')}}">
-            <td>{{venue.name}}</td>
+            <td><a href="{{url_for('add_review', id=venue.id)}}">{{venue.name}}</a></td>
             <td>{{venue.type}}</td>
             <td>{{venue.address}}</td>
             <td>{{venue.post_code}}</td>
             <td>{{venue.city}}</td>
             <td>{{venue.country}}</td>
+            <td>{{venue.url}}</td>
         </tr>
         {% endfor %}
     </table>

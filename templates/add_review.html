@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="container">
-    <form action="{{ url_for('save_review') }}" method="POST" class="col s12">
+    <form action="{{ url_for('save_review', id=id) }}" method="POST" class="col s12">
         <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
         <div class="mb-3 form-check">
             <label for="text_field" class="form-label">Review</label>
