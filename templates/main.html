@@ -21,10 +21,6 @@
             <th>Post Code</th>
             <th>City</th>
             <th>Country</th>
-            <th>Pinkwashing</th>
-            <th>Identity</th>
-            <th>Inclusive</th>
-            <th>Tags</th>
         </tr>
         {% for venue in venues_list %}
         <tr class="{{loop.cycle('white','blue-grey lighten-5')}}">
@@ -34,13 +30,6 @@
             <td>{{venue.post_code}}</td>
             <td>{{venue.city}}</td>
             <td>{{venue.country}}</td>
-            <td>{{venue.pinkwashing}}</td>
-            <td>{{venue.identity}}</td>
-            <td>{{venue.inclusive}}</td>
-            <td>{{venue.tags}}</td>
-            {% for number in range(venue.tags|count) %}
-            <p>{{venue.tags[number]}}</p>
-            {% endfor %}
         </tr>
         {% endfor %}
     </table>
