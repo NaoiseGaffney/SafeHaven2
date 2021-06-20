@@ -81,7 +81,7 @@ class User(db.Document, UserMixin):
 # Delete own venue creation?
 class Venue(db.Document):
     name = db.StringField(default="")
-    type = db.StringField(choices=["Bar/Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
+    type = db.StringField(choices=["Bar/Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel"])
     location = db.StringField(default="")   # Address or lat/lon?
 
     # Key Identifiers (Ed's list)
@@ -145,7 +145,8 @@ def home_page():
             )
 
     # return render_template("index.html")
-    return render_template("flask_user_layout.html")
+    return render_template("home.html")
+    return render_template_string("This is the Home/Landing Page. Welcome!")
 
 
 @app.route("/main")
@@ -167,14 +168,7 @@ def add_venue():
     tags = {"LGBTQ+", "Tag 2", "Tag 3", "Tag 4", "Tag 5"}
     sorted_tags = sorted(tags)
     print(sorted_tags)
-
-    types = {"Bar/Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"}
-    sorted_types = sorted(types)
-    print(sorted_types)
-
-    venues = Venue.objects()
-    print(venues.count())
-    return render_template("add_venue.html", sorted_tags=sorted_tags, sorted_types=sorted_types, venues=venues)
+    return render_template("add_venue.html", sorted_tags=sorted_tags)
 
 
 @app.route("/save_venue", methods=["POST"])
@@ -184,7 +178,7 @@ def save_venue():
     """
     The "C" in CRUD, save the filled in venue form.
     """
-    """ venue = Venue(
+    venue = Venue(
         name=request.form.get("name"),
         type=request.form.get("type"),
         location=request.form.get("location"),
@@ -193,28 +187,15 @@ def save_venue():
         inclusive=request.form.get("inclusive"),
         tags=request.form.get("tags"),
         user=User.username                              # current_user.username
-    ) """
-
-    venue = Venue(
-        name = "Test Place",
-        type = "Gym",
-        location = "6 Cool Place",
-        pinkwashing = False,
-        identity = True,
-        inclusive = True,
-        
-        user=User.username
     )
 
-    venue.save()
-    """
     try:
         venue.save()
         flash("The venue was saved!", "success")
     except Exception:
         flash("The venue was NOT saved!", "danger")
     return redirect(url_for("main_page"))
-    """
+
 
 
 if __name__ == "__main__":

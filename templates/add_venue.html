@@ -1,58 +1,10 @@
 {% extends "flask_user_layout.html" %}
+{% block extra_title %} - Add Venue{% endblock %}
 {% block content %}
 <div class="container">
-    <h6>
-        {% if call_or_get(current_user.is_authenticated) %}
-        Home
-        {% else %}
-        <a href="{{ url_for('home_page')}}">Home</a>
-        {% endif %}
-        &nbsp; > &nbsp;<a href="{{ url_for('main_page') }}">Main Page</a>&nbsp; > &nbsp;<a
-            href="{{ url_for('add_venue')}}">Add Venue</a>
-    </h6>
-    <div class="row">
-        <form action="{{ url_for('save_venue') }}" method="POST" class="col s12">
-
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="name" name="name" type="text" maxlength="200" required>
-                    <label for="title">Venue Name</label>
-                </div>
-            </div>
-    </div>
-    <div class="row">
-        <select id="type" name="type">
-            <div class="input-field col s12">
-                <option disabled selected>Type</option>
-                {% for type in sorted_types %}
-                <option value="{{type}}">{{type}}</option>
-                {% endfor %}
-        </select>
-        <label hidden for="type">Type</label>
-    </div>
-    <div class="row">
-        <div class="input-field col s12">
-            <input id="type" name="location" type="location" maxlength="200" required>
-            <label for="location">Location</label>
-        </div>
-    </div>
-    <div class="row form-check form-switch">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Pinkwashing</label>
-        <input class="form-check-input" id="pinkwashing" name="pinkwashing" type="checkbox">
-    </div>
-    <div class="row form-check form-switch">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Identity</label>
-        <input class="form-check-input" id="identity" name="identity" type="checkbox">
-    </div>
-    <div class="row form-check form-switch">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Inclusive</label>
-        <input class="form-check-input" id="inclusive" name="inclusive" type="checkbox">
-    </div>
-    <div class="row button_top_padding">
-        <button class="" type="submit" name="action">Add Venue
-        </button>
-    </div>
-    </form>
-</div>
+    <h1>Add a Venue</h1>
+    {% for tag in sorted_tags %}
+    <p>{{tag}}</p>
+    {% endfor %}
 </div>
 {% endblock %}

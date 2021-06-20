@@ -1,0 +1,103 @@
+/* Footer fix */
+
+html, body {
+    height: 100%;
+  }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* Common styles */
+
+:root {
+    --color-dark: #343a40;
+    --font-cursive: 'Indie Flower', cursive;
+    --font-default: 'Noto Sans', sans-serif;
+    --shadow-normal: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+body {
+    font-family: var(--font-default);
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Navbar */
+.navbar {
+    border-bottom: 1px solid var(--color-dark);
+}
+
+/* Footer */
+footer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Hero */
+#hero-image-container {
+    background: url(../media/chalk.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 62.6px);
+    
+}
+
+#hero-text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-text {
+    font-size: 4rem;
+    color: #fff;
+}
+
+
+/* Text effects */
+.text-shadow
+{
+    text-shadow: 
+        -1px -1px 0px #000,
+         0px -1px 0px #000,
+         1px -1px 0px #000,
+        -1px  0px 0px #000,
+         1px  0px 0px #000,
+        -1px  1px 0px #000,
+         0px  1px 0px #000,
+         1px  1px 0px #000;
+}
+
+.zoom-on-hover {
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.zoom-on-hover:hover {
+      -webkit-transform: scale(1.2);
+          -ms-transform: scale(1.2);
+              transform: scale(1.2);
+}
+
+/* Messages */
+
+.alert {
+    margin-bottom: 0;
+    text-align: center;
+}
+
