@@ -81,7 +81,7 @@ class User(db.Document, UserMixin):
 # Delete own venue creation?
 class Venue(db.Document):
     name = db.StringField(default="")
-    type = db.StringField(choices=["Bar/Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
+    type = db.StringField(choices=["Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
     location = db.StringField(default="")   # Address or lat/lon?
 
     # Key Identifiers (Ed's list)
@@ -169,7 +169,7 @@ def add_venue():
     sorted_tags = sorted(tags)
     print(sorted_tags)
 
-    types = {"Bar/Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"}
+    types = {"Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"}
     sorted_types = sorted(types)
     print(sorted_types)
 
