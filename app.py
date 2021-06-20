@@ -100,6 +100,7 @@ class Venue(db.Document):
     post_code = db.StringField(default="")
     city = db.StringField(default="")
     country = db.StringField(default="")
+    url = db.StringField(default="")
     user = db.StringField(default="")
 
     meta = {
@@ -115,6 +116,9 @@ class Review(db.Document):
     venue_id = db.ObjectIdField(Venue)
 
     # Key Identifiers (Ed's list)
+    # pinkwashing = db.BooleanField(default=False)
+    # identity = db.BooleanField(default=False)
+    # inclusive = db.BooleanField(default=False)
     pinkwashing = db.BooleanField(default=False)
     identity = db.BooleanField(default=False)
     inclusive = db.BooleanField(default=False)
@@ -231,14 +235,15 @@ def save_venue():
     return redirect(url_for("main_page"))
 
 
-@app.route("/create_review/<int:id>")
+@app.route("/add_review/<id>")
 @login_required
 @app.errorhandler(CSRFError)
-def create_review(id):
-    pass
+def add_review(id):
+    print(id)
+    return render_template("add_review.html", id=id)
 
 
-@app.route("/save_review/<int:id>", methods=["POST"])
+@app.route("/save_review/<id>", methods=["POST"])
 @login_required
 @app.errorhandler(CSRFError)
 def save_review(id):
@@ -259,11 +264,36 @@ def save_review(id):
     )
 
     try:
-        venue.save()
+        review.save()
         flash("The venue was saved!", "success")
     except Exception:
         flash("The venue was NOT saved!", "danger")
     return redirect(url_for("main_page"))
+
+
+# --- // Error Handlers for 400 CSRF Error (Bad Request), 404 Page Not Found, 405 Method Not Allowed, and 500 Internal Server Error.
+@app.errorhandler(CSRFError)
+def handle_csrf_error(error):
+    excuse = "Apologies, the Safe Havens Security Detail have omitted to secure this page! We're calling them back from their lunch-break to fix this. Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    return render_template("oops.html", error=error.description, excuse=excuse, error_type="Client: 400 - Bad Request")
+
+
+@app.errorhandler(404)
+def not_found(error):
+    excuse = "Apologies, our Staff are lost in the Safe Havens! Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    return render_template("oops.html", error=error, excuse=excuse, error_type="Client: 404 - Page Not Found")
+
+
+@app.errorhandler(405)
+def not_found(error):
+    excuse = "Apologies, our Staff won't allow you to do this! Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    return render_template("oops.html", error=error, excuse=excuse, error_type="Client: 405 - Method Not Allowed")
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    excuse = "Apologies, something serious occurred and the Staff are working on resolving the issue! This section is cordoned off for now. Please click on the pink pulsating buoy to go to the Home Page (registering or signing in) or Member's Page (signed in), or click on Sign Out below."
+    return render_template("oops.html", error=error, excuse=excuse, error_type="Server: 500 - Internal Server Error")
 
 
 if __name__ == "__main__":
