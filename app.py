@@ -37,11 +37,19 @@ from pathlib import Path
 env_path = Path(".") / ".env"
 load_dotenv(dotenv_path=env_path)
 
+if os.environ.get("FDT") == "ON":
+    from flask_debugtoolbar import DebugToolbarExtension
+
 # --- // Application Factory Setup (based on the Flask-User example for MongoDB)
 # https://flask-user.readthedocs.io/en/latest/mongodb_app.html
 # Setup Flask and load app.config
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.config.from_object(__name__ + ".ConfigClass")
+csrf = CSRFProtect(app)
+csrf.init_app(app)
+
+if os.environ.get("FDT") == "ON":
+    app.debug = True
 
 # Setup Flask-MongoEngine --> MongoEngine --> PyMongo --> MongoDB
 db = MongoEngine(app)
@@ -49,9 +57,15 @@ db = MongoEngine(app)
 # Use Flask Sessions with Mongoengine
 app.session_interface = MongoEngineSessionInterface(db)
 
+# Initiate the Flask Debug Toolbar Extension
+if os.environ.get("FDT") == "ON":
+    toolbar = DebugToolbarExtension(app)
+
 # --- // Classes -> MongoDB Collections: User, Place.
 # Flask-User User Class (Collection) extended with email_confirmed_at
 # Added username indexing and background-indexing for performance
+
+
 class User(db.Document, UserMixin):
     # Active set to True to allow login of user
     active = db.BooleanField(default=True)
@@ -123,7 +137,6 @@ def home_page():
     """
     if current_user.is_authenticated:
         return redirect(url_for("main_page"))
-
 
     # Create admin user as first/default user, if admin does not exist.
     # Password and e-mail are set using environment variables.
@@ -211,7 +224,6 @@ def save_venue():
     except Exception:
         flash("The venue was NOT saved!", "danger")
     return redirect(url_for("main_page"))
-
 
 
 if __name__ == "__main__":
