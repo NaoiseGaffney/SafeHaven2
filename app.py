@@ -100,7 +100,7 @@ class Venue(db.Document):
     post_code = db.StringField(default="")
     city = db.StringField(default="")
     country = db.StringField(default="")
-    url = db.StringField(default="")
+    url = db.URLField()
     user = db.StringField(default="")
 
     meta = {
@@ -147,7 +147,7 @@ user_manager = UserManager(app, db, User)
 @app.route("/index.html")
 def home_page():
     """
-    Landing/Home Page, accessible before sign in/login. If logged in, user is redirected to the Member's Page.
+    Landing/Home Page, accessible before sign in/login. If logged in, user is redirected to the Main Page.
     At first access/touch the user 'admin' is created using environment variables for the password and email address.
     The admin user creation is here as it will be created twice on Heroku if placed in the main code.
     """
@@ -224,6 +224,7 @@ def save_venue():
         post_code=request.form.get("post_code"),
         city=request.form.get("city"),
         country=request.form.get("country"),
+        url=request.form.get("url"),
         user=current_user.username
     )
 
