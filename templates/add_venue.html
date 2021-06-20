@@ -1,10 +1,84 @@
 {% extends "flask_user_layout.html" %}
 {% block extra_title %} - Add Venue{% endblock %}
 {% block content %}
+
 <div class="container">
-    <h1>Add a Venue</h1>
-    {% for tag in sorted_tags %}
-    <p>{{tag}}</p>
-    {% endfor %}
+    <form action="{{ url_for('save_venue') }}" method="POST" class="col s12">
+        
+        <div class="mb-3 form-check">
+            <label for="name" class="form-label">Venue Name</label>
+            <input id="name" name="name" type="text" maxlength="200" required aria-describedby="Venue Name" required>
+            <div id="nameHelp" class="form-text">Please enter the name of the venue you wish to add.</div>
+        </div>
+        <div class="mb-3 form-check">
+            <label for="type" class="form-label" aria-describedby="Address">Select Venue Type</label>
+            <select id="type" name="type">
+                <option disabled selected>Please select venue type.</option>
+                {% for type in sorted_types %}
+                <option value="{{type}}">{{type}}</option>
+                {% endfor %}
+            </select>
+            <div id="typeHelp" class="form-text">Please select the venue type from the drop-down menu.</div>
+        </div>
+        <div class="mb-3 form-check">
+            <label for="address" class="form-label">Address</label>
+            <input id="address" name="address" type="text" maxlength="200" required aria-describedby="Address">
+            <div id="addressHelp" class="form-text">Please enter the address of the venue you wish to add.</div>
+        </div>
+        <div class="mb-3 form-check">
+            <label for="post_code" class="form-label">Post Code</label>
+            <input id="post_code" name="post_code" type="text" maxlength="200" required aria-describedby="Post Code">
+            <div id="postcodeHelp" class="form-text">Please enter the post code of the venue you wish to add.</div>
+        </div>
+        <div class="mb-3 form-check">
+            <label for="city" class="form-label">City</label>
+            <input id="city" name="city" type="text" maxlength="200" required aria-describedby="City">
+            <div id="cityHelp" class="form-text">Please enter the city of the venue you wish to add.</div>
+        </div>
+        <div class="mb-3 form-check">
+            <label for="country" class="form-label">Country</label>
+            <input id="country" name="country" type="text" maxlength="200" required aria-describedby="Country">
+            <div id="countryHelp" class="form-text">Please enter the country of the venue you wish to add.</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="pinkwashing">Pinkwashing</label>
+            <input class="form-check-input" type="checkbox" id="pinkwashing" name="pinkwashing" aria-describedby="Pinkwashing">
+            <div id="pinkwashingHelp" class="form-text">Pinkwashing or true LGBTQ+ supporter.</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="identity">Identity</label>
+            <input class="form-check-input" type="checkbox" id="identity" name="identity" aria-describedby="Identity">
+            <div id="identityHelp" class="form-text">Respect identity, use of preferred pronouns, gender-neutral facilities?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="diverse">Inclusive</label>
+            <input class="form-check-input" type="checkbox" id="inclusive" name="inclusive" aria-describedby="Inclusive">
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_LGBTQ">Tag: LGBTQ+</label>
+            <input class="form-check-input" type="checkbox" id="tags_LGBTQ" name="tags_LGBTQ" aria-describedby="tags_LGBTQ">
+            <div id="lgbtqHelp" class="form-text">Tag: LGBTQ+ friendly?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_Trans">Tag: Trans</label>
+            <input class="form-check-input" type="checkbox" id="tags_Trans" name="tags_Trans" aria-describedby="tags_Trans">
+            <div id="transHelp" class="form-text">Tag: Trans friendly?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_Youth">Tag: Youth</label>
+            <input class="form-check-input" type="checkbox" id="tags_Youth" name="tags_Youth" aria-describedby="tags_Youth">
+            <div id="lgbtqHelp" class="form-text">Tag: Youth-focused?</div>
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="tags_Shelter">Tag: Shelter</label>
+            <input class="form-check-input" type="checkbox" id="tags_Shelter" name="tags_Shelter" aria-describedby="tags_Shelter">
+            <div id="lgbtqHelp" class="form-text">Tag: Provides shelter?</div>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-primary" type="submit" name="action">Add Venue
+            </button>
+        </div>
+    </form>
 </div>
 {% endblock %}
