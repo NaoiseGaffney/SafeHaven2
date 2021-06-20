@@ -146,7 +146,6 @@ def home_page():
 
     # return render_template("index.html")
     return render_template("flask_user_layout.html")
-    return render_template_string("This is the Home/Landing Page. Welcome!")
 
 
 @app.route("/main")
