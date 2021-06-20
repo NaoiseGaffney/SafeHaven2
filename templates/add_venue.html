@@ -4,7 +4,7 @@
 
 <div class="container">
     <form action="{{ url_for('save_venue') }}" method="POST" class="col s12">
-        
+        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
         <div class="mb-3 form-check">
             <label for="name" class="form-label">Venue Name</label>
             <input id="name" name="name" type="text" maxlength="200" required aria-describedby="Venue Name" required>
