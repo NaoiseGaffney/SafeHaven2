@@ -24,13 +24,13 @@
         </tr>
         {% for venue in venues_list %}
         <tr class="{{loop.cycle('white','blue-grey lighten-5')}}">
-            <td><a href="{{url_for('add_review', id=venue.id)}}">{{venue.name}}</a></td>
+            <td>Click on link to add a review of: <a href="{{url_for('add_review', id=venue.id)}}">{{venue.name}}</a></td>
             <td>{{venue.type}}</td>
             <td>{{venue.address}}</td>
             <td>{{venue.post_code}}</td>
             <td>{{venue.city}}</td>
             <td>{{venue.country}}</td>
-            <td>{{venue.url}}</td>
+            <td><a href="{{venue.url}}" target="_blank" rel="noopener">{{venue.url}}</a></td>
         </tr>
         {% endfor %}
     </table>
