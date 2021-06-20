@@ -4,54 +4,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ user_manager.USER_APP_NAME }}</title>
+    <title>Safe Havens{% block extra_title %}{% endblock %}</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Noto+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 
-    <!-- In-lining styles to avoid needing a separate .css file -->
-    <style>
-        hr { border-color: #cccccc; margin: 0; }
-        .no-margins { margin: 0px; }
-        .with-margins { margin: 10px; }
-        .col-centered { float: none; margin: 0 auto; }
-    </style>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-      <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
-
-    {# *** Allow sub-templates to insert extra html to the head section *** #}
     {% block extra_css %}{% endblock %}
   </head>
 
-
 <body>
     {% block body %}
-    <div id="header-div" class="clearfix with-margins">
-        <div class="pull-left"><a href="/"><h1 class="no-margins">{{ user_manager.USER_APP_NAME }}</h1></a></div>
-        <div class="pull-right">
-            {% if call_or_get(current_user.is_authenticated) %}
-                <a href="{{ url_for('user.edit_user_profile') }}">{{ current_user.username or current_user.email }}</a>
-                &nbsp; | &nbsp;
-                <a href="{{ url_for('user.logout') }}">{%trans%}Sign out{%endtrans%}</a>
-            {% else %}
-                <a href="{{ url_for('user.login') }}">{%trans%}Sign in{%endtrans%}</a>
-            {% endif %}
-        </div>
-    </div>
-    {% block menu %}
-    <div id="menu-div" class="with-margins">
-        <a href="/">{%trans%}Home page{%endtrans%}</a>
-    </div>
-    {% endblock %}
-    <hr class="no-margins"/>
+    <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('home_page') }}">
+            <img src="{{ url_for('static', filename='media/rainbow.svg') }}" alt="" width="30" height="30" class="d-inline-block">
+            Safe Havens
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ url_for('home_page') }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              {% if call_or_get(current_user.is_authenticated) %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('user.edit_user_profile') }}">{{ current_user.username or current_user.email }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('user.logout') }}">Sign out</a>
+                </li>
+              {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('user.login') }}">Sign in</a>
+                </li>
+              {% endif %}
+            </ul>
 
-    <div id="main-div" class="with-margins">
+          </div>
+        </div>
+      </nav>
+
+    <main>
     {# One-time system messages called Flash messages #}
     {% block flash_messages %}
         {%- with messages = get_flashed_messages(with_categories=true) -%}
@@ -69,19 +73,14 @@
     {% block main %}
         {% block content %}{% endblock %}
     {% endblock %}
-    </div>
+    </main>
 
-    <br/>
-    <hr class="no-margins"/>
-    <div id="footer-div" class="clearfix with-margins">
-        <div class="pull-left">{{ user_manager.USER_APP_NAME }} {{ user_manager.USER_APP_VERSION }}</div>
-        <div class="pull-right">&copy; {{ user_manager.USER_COPYRIGHT_YEAR }} {{ user_manager.USER_CORPORATION_NAME }}</div>
-    </div>
+    <footer class="text-center">
+        <div>{{ user_manager.USER_APP_NAME }} {{ user_manager.USER_APP_VERSION }}</div>
+        <div>&copy; {{ user_manager.USER_COPYRIGHT_YEAR }} {{ user_manager.USER_CORPORATION_NAME }}</div>
+    </footer>
     {% endblock %}
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> -->
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

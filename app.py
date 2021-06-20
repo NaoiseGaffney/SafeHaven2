@@ -145,7 +145,7 @@ def home_page():
             )
 
     # return render_template("index.html")
-    return render_template("flask_user_layout.html")
+    return render_template("home.html")
     return render_template_string("This is the Home/Landing Page. Welcome!")
 
 
@@ -185,7 +185,7 @@ def save_venue():
     """
     The "C" in CRUD, save the filled in venue form.
     """
-    """ venue = Venue(
+    venue = Venue(
         name=request.form.get("name"),
         type=request.form.get("type"),
         location=request.form.get("location"),
@@ -194,28 +194,15 @@ def save_venue():
         inclusive=request.form.get("inclusive"),
         tags=request.form.get("tags"),
         user=User.username                              # current_user.username
-    ) """
-
-    venue = Venue(
-        name = "Test Place",
-        type = "Gym",
-        location = "6 Cool Place",
-        pinkwashing = False,
-        identity = True,
-        inclusive = True,
-        
-        user=User.username
     )
 
-    venue.save()
-    """
     try:
         venue.save()
         flash("The venue was saved!", "success")
     except Exception:
         flash("The venue was NOT saved!", "danger")
     return redirect(url_for("main_page"))
-    """
+
 
 
 if __name__ == "__main__":
