@@ -1,53 +1,58 @@
 {% extends "flask_user_layout.html" %}
-{% block extra_title %} - Add Venue{% endblock %}
+{% block extra_title %} - Edit Venue{% endblock %}
 {% block content %}
 
 <div class="container">
-    <form action="{{ url_for('save_venue') }}" method="POST" class="col s12">
+    <form action="{{ url_for('update_venue', id=venue.id) }}" method="POST" class="col s12">
         <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
         <div class="mb-3 form-check">
             <label for="name" class="form-label">Venue Name</label>
-            <input id="name" name="name" type="text" maxlength="200" required aria-describedby="Venue Name" required>
+            <input id="name" name="name" type="text" maxlength="200" required aria-describedby="Venue Name" required value="{{venue.name}}">
             <div id="nameHelp" class="form-text">Please enter the name of the venue you wish to add.</div>
         </div>
         <div class="mb-3 form-check">
-            <label for="venue_type" class="form-label" aria-describedby="Address">Select Venue Type</label>
+            <label for="venue_type" class="form-label" aria-describedby="Venue Type">Select Venue Type</label>
             <select id="venue_type" name="venue_type">
                 <option disabled selected>Please select venue type.</option>
                 {% for type in sorted_types %}
+                {% if venue.venue_type == type %}
+                <option value="{{type}}" selected>{{type}}</option>
+                {% else %}
                 <option value="{{type}}">{{type}}</option>
+                {% endif %}
                 {% endfor %}
             </select>
             <div id="typeHelp" class="form-text">Please select the venue type from the drop-down menu.</div>
         </div>
         <div class="mb-3 form-check">
             <label for="address" class="form-label">Address</label>
-            <input id="address" name="address" type="text" maxlength="200" required aria-describedby="Address">
+            <input id="address" name="address" type="text" maxlength="200" required aria-describedby="Address" value="{{venue.address}}">
             <div id="addressHelp" class="form-text">Please enter the address of the venue you wish to add.</div>
         </div>
         <div class="mb-3 form-check">
             <label for="post_code" class="form-label">Post Code</label>
-            <input id="post_code" name="post_code" type="text" maxlength="200" required aria-describedby="Post Code">
+            <input id="post_code" name="post_code" type="text" maxlength="200" required aria-describedby="Post Code" value="{{venue.post_code}}">
             <div id="postcodeHelp" class="form-text">Please enter the post code of the venue you wish to add.</div>
         </div>
         <div class="mb-3 form-check">
             <label for="city" class="form-label">City</label>
-            <input id="city" name="city" type="text" maxlength="200" required aria-describedby="City">
+            <input id="city" name="city" type="text" maxlength="200" required aria-describedby="City" value="{{venue.city}}">
             <div id="cityHelp" class="form-text">Please enter the city of the venue you wish to add.</div>
         </div>
         <div class="mb-3 form-check">
             <label for="country" class="form-label">Country</label>
-            <input id="country" name="country" type="text" maxlength="200" required aria-describedby="Country">
+            <input id="country" name="country" type="text" maxlength="200" required aria-describedby="Country" value="{{venue.country}}">
             <div id="countryHelp" class="form-text">Please enter the country of the venue you wish to add.</div>
         </div>
         <div class="mb-3 form-check">
             <label for="url" class="form-label">URL</label>
-            <input id="url" name="url" type="url" maxlength="250" aria-describedby="URL">
-            <div id="urlHelp" class="form-text">Please enter the URL (website address) of the venue you wish to add.</div>
+            <input id="url" name="url" type="url" maxlength="250" aria-describedby="URL" value="{{venue.url}}">
+            <div id="urlHelp" class="form-text">Please enter the URL (website address) of the venue you wish to add.
+            </div>
         </div>
 
         <div class="row">
-            <button class="btn btn-primary" type="submit" name="action">Add Venue
+            <button class="btn btn-primary" type="submit" name="action">Update Venue
             </button>
         </div>
     </form>
