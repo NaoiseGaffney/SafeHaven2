@@ -28,6 +28,9 @@ from flask import (
 )
 from mongoengine.fields import ReferenceField
 from flask_wtf.csrf import CSRFProtect, CSRFError
+import json
+from json.decoder import JSONDecodeError
+from jsonschema import validate, ValidationError
 
 from config import ConfigClass
 
@@ -100,7 +103,9 @@ class Venue(db.Document):
     city = db.StringField(default="")
     country = db.StringField(default="")
     url = db.StringField(default="")
-    user = db.StringField(default="")
+    lat = db.StringField(default="")
+    lon = db.StringField(default="")
+    user = db.StringField(default="admin")
 
     meta = {
         "auto_create_index": True,
@@ -256,16 +261,16 @@ def update_venue(id):
     """
     venue = Venue.objects.get(id=id)
     venue_form = {
-        "name" : request.form.get("name"),
-        "venue_type" : request.form.get("venue_type"),
-        "address" : request.form.get("address"),
-        "post_code" : request.form.get("post_code"),
-        "city" : request.form.get("city"),
-        "country" : request.form.get("country"),
-        "url" : request.form.get("url"),
-        "user" : venue.user
+        "name": request.form.get("name"),
+        "venue_type": request.form.get("venue_type"),
+        "address": request.form.get("address"),
+        "post_code": request.form.get("post_code"),
+        "city": request.form.get("city"),
+        "country": request.form.get("country"),
+        "url": request.form.get("url"),
+        "user": venue.user
     }
-    
+
     try:
         venue.update(**venue_form)
         flash("The venue was updated!", "success")
@@ -292,7 +297,6 @@ def delete_venue(id):
     except Exception:
         flash("The venue was NOT deleted!", "danger")
     return redirect(url_for("main_page"))
-
 
 
 # --- // CRUD for Review
@@ -348,6 +352,55 @@ def delete_review(id):
     except Exception:
         flash("The review was NOT deleted!", "danger")
     return redirect(url_for("main_page"))
+
+
+# --- // Load JSON file of Venues
+@app.route("/load_venues")
+@roles_required("Admin")
+def load_venues():
+    """
+    Create the venues Collection if it does not exist. First validation: Venue Collection exists. Second validation: FileNotFound ('venues.json').
+    Third validation: JSONDecodeError (valid JSON format). Fourth validation: correct JSON Schema = Venue Class.
+    """
+    try:
+        with open("venues.json", "r", encoding="utf-8") as f:
+            venues_dict = json.load(f)
+    except FileNotFoundError:
+        flash("'venues.json' can't be found.", "danger")
+    except json.decoder.JSONDecodeError:
+        flash("'venues.json' isn't a proper JSON file.", "danger")
+        return redirect(url_for("main_page"))
+
+    venues_schema = {
+        "type": "object",
+        "properties": {
+                "name": {"type": "string"},
+                "venue_type": {"type": "string"},
+                "address": {"type": "string"},
+                "post_code": {"type": "string"},
+                "city": {"type": "string"},
+                "country": {"type": "string"},
+                "lat": {"type": "string"},
+                "lon": {"type": "string"},
+        },
+    }
+
+    try:
+        for venue in venues_dict:
+            validate(instance=venue, schema=venues_schema)
+    except ValidationError:
+        venues_title = venue["name"]
+        flash("'venues.json' has JSON Schema errors.", "danger")
+        return redirect(url_for("admin_dashboard"))
+
+    try:
+        venue_instances = [Venue(**data) for data in venues_dict]
+        Venue.objects.insert(venue_instances, load_bulk=False)
+        flash("Venues Collection created.", "success")
+    except Exception:
+        flash(f"Venues Collection NOT created.", "danger")
+    finally:
+        return redirect(url_for("main_page") or url_for("home_page"))
 
 
 # --- // Error Handlers for 400 CSRF Error (Bad Request), 404 Page Not Found, 405 Method Not Allowed, and 500 Internal Server Error.

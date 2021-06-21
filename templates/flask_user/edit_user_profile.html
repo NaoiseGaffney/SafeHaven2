@@ -26,5 +26,9 @@
         <p><a href="{{ url_for('user.change_password') }}">{%trans%}Change password{%endtrans%}</a></p>
     {% endif %}
 {% endif %}
-
+{% if call_or_get(current_user.is_authenticated) %}
+{% if "Admin" in current_user.roles %}
+<a href="{{url_for('load_venues')}}">Load Venues from JSON File.</a>
+{% endif %}
+{% endif %}
 {% endblock %}
