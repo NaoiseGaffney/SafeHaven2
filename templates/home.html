@@ -3,8 +3,58 @@
 {% block content %}
 <div id="hero-image-container">
     <div id="hero-text-container">
-        <span class="hero-text text-shadow">Safe Havens</span>
+        <h1 class="hero-heading text-shadow">Safe Havens</h1>
+        <h3 class="hero-subtitle text-shadow">Coming out of lockdown!</h3>
     </div>
 </div>
+<section class="container">
+    <div class="row">
+        <div class="col-sm-12 my-5">
+            <p>
+                Lockdown has been a difficult time for all, not least for members of the LGBTQ+ community who have been forced to stay at home with people that are not supportive of their lifestyles.
+            </p>
+            <p>
+                As discrimination has reared its ugly head, mental health has suffered and many have been forced to return to the closet.
+            </p>
+            <p>
+                With signs of lockdown easing and Summer just around the corner, it's time to embrace freedom once again!
+            </p>
+        </div>
+    </div>
+
+    <div class="row callout-container">
+        <div class="col-sm-12 col-lg-6">
+            <img class="home-img" src="{{ url_for('static', filename='media/love-is-love.jpg') }}" alt="">
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <p>
+                <a href="{{ url_for('user.register') }}">Join our community</a> and check out the top LGBTQ+ venues around the world
+            </p>
+        </div>
+    </div>
+
+    <div class="row callout-container">
+        <div class="col-sm-12 col-lg-6 order-lg-2">
+            <img class="home-img" src="{{ url_for('static', filename='media/on-beach.jpg') }}" alt="">
+        </div>
+        <div class="col-sm-12 col-lg-6 order-lg-1">
+            <p>
+                <a href="{{ url_for('add_venue')}}">Add the venues</a> you know to be inclusive, supportive and generally amazing
+            </p>
+        </div>
+    </div>
+   
+    <div class="row callout-container">
+        <div class="col-sm-12 col-lg-6">
+            <img class="home-img" src="{{ url_for('static', filename='media/tell-us.jpg') }}" alt="">
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <p>
+                <a href="{{ url_for('main_page') }}">Tell us</a> about your experiences and help others to feel safe and loved, whoever they are
+            </p>
+        </div>
+    </div>
+
+</section>
 
 {% endblock %}
