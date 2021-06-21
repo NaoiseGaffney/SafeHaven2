@@ -61,7 +61,7 @@ app.session_interface = MongoEngineSessionInterface(db)
 if os.environ.get("FDT") == "ON":
     toolbar = DebugToolbarExtension(app)
 
-# --- // Classes -> MongoDB Collections: User, Place.
+# --- // Classes -> MongoDB Collections: User, Venue, Review
 # Flask-User User Class (Collection) extended with email_confirmed_at
 # Added username indexing and background-indexing for performance
 
@@ -92,15 +92,14 @@ class User(db.Document, UserMixin):
 
 
 # Venue Class (Collection) containing the fields related to the venues that users can view, create, and update.
-# Delete own venue creation?
 class Venue(db.Document):
     name = db.StringField(default="")
-    type = db.StringField(choices=["Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
+    venue_type = db.StringField(choices=["Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
     address = db.StringField(default="")
     post_code = db.StringField(default="")
     city = db.StringField(default="")
     country = db.StringField(default="")
-    url = db.URLField()
+    url = db.StringField(default="")
     user = db.StringField(default="")
 
     meta = {
@@ -115,10 +114,7 @@ class Review(db.Document):
     user = db.StringField(default="")
     venue_id = db.ObjectIdField(Venue)
 
-    # Key Identifiers (Ed's list)
-    # pinkwashing = db.BooleanField(default=False)
-    # identity = db.BooleanField(default=False)
-    # inclusive = db.BooleanField(default=False)
+    # LGBTQ+ Toggles/Switches/Tickboxes
     pinkwashing = db.BooleanField(default=False)
     identity = db.BooleanField(default=False)
     inclusive = db.BooleanField(default=False)
@@ -181,13 +177,15 @@ def home_page():
     return render_template("home.html")
 
 
+# --- // CRUD for Venue
 @app.route("/main")
 def main_page():
     """
     The "R" in CRUD, a list of all venues.
     """
     venues_list = Venue.objects()
-    return render_template("main.html", venues_list=venues_list)
+    review_list = Review.objects()
+    return render_template("main.html", venues_list=venues_list, review_list=review_list)
 
 
 @app.route("/add_venue")
@@ -219,7 +217,7 @@ def save_venue():
     """
     venue = Venue(
         name=request.form.get("name"),
-        type=request.form.get("type"),
+        venue_type=request.form.get("venue_type"),
         address=request.form.get("address"),
         post_code=request.form.get("post_code"),
         city=request.form.get("city"),
@@ -236,6 +234,68 @@ def save_venue():
     return redirect(url_for("main_page"))
 
 
+@app.route("/edit_venue/<id>", methods=["POST", "GET"])
+@login_required
+@roles_required("Admin")
+@app.errorhandler(CSRFError)
+def edit_venue(id):
+    venue = Venue.objects.get(id=id)
+    types = {"Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"}
+    sorted_types = sorted(types)
+
+    return render_template("edit_venue.html", venue=venue, sorted_types=sorted_types)
+
+
+@app.route("/update_venue/<id>", methods=["POST", "GET"])
+@login_required
+@roles_required("Admin")
+@app.errorhandler(CSRFError)
+def update_venue(id):
+    """
+    The "U" in CRUD, update the venue form.
+    """
+    venue = Venue.objects.get(id=id)
+    venue_form = {
+        "name" : request.form.get("name"),
+        "venue_type" : request.form.get("venue_type"),
+        "address" : request.form.get("address"),
+        "post_code" : request.form.get("post_code"),
+        "city" : request.form.get("city"),
+        "country" : request.form.get("country"),
+        "url" : request.form.get("url"),
+        "user" : venue.user
+    }
+    
+    try:
+        venue.update(**venue_form)
+        flash("The venue was updated!", "success")
+    except Exception:
+        flash("The venue was NOT updated!", "danger")
+    return redirect(url_for("main_page"))
+
+
+@app.route("/delete_venue/<id>", methods=["POST", "GET"])
+@login_required
+@roles_required("Admin")
+@app.errorhandler(CSRFError)
+def delete_venue(id):
+    """
+    The "D" in CRUD, delete the venue and associated reviews based on user.
+    """
+    venue = Venue.objects.get(id=id)
+    reviews = Review.objects(user=venue.user)
+
+    try:
+        venue.delete()
+        reviews.delete()
+        flash("The venue was deleted!", "success")
+    except Exception:
+        flash("The venue was NOT deleted!", "danger")
+    return redirect(url_for("main_page"))
+
+
+
+# --- // CRUD for Review
 @app.route("/add_review/<id>")
 @login_required
 @app.errorhandler(CSRFError)
@@ -266,9 +326,27 @@ def save_review(id):
 
     try:
         review.save()
-        flash("The venue was saved!", "success")
+        flash("The review was saved!", "success")
     except Exception:
-        flash("The venue was NOT saved!", "danger")
+        flash("The review was NOT saved!", "danger")
+    return redirect(url_for("main_page"))
+
+
+@app.route("/delete_review/<id>", methods=["POST"])
+@login_required
+@roles_required("Admin")
+@app.errorhandler(CSRFError)
+def delete_review(id):
+    """
+    The "D" in CRUD, delete an offensive review by Admin.
+    """
+    review = Review.objects.get(id)
+
+    try:
+        review.delete()
+        flash("The review was deleted!", "success")
+    except Exception:
+        flash("The review was NOT deleted!", "danger")
     return redirect(url_for("main_page"))
 
 
