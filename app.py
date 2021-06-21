@@ -111,6 +111,7 @@ class Venue(db.Document):
         "auto_create_index": True,
         "index_background": True,
         "indexes": ["name", "city", "country"],
+        "ordering": ["name"],
     }
 
 
