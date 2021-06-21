@@ -1,8 +1,9 @@
 /* Footer fix */
 
-html, body {
+html,
+body {
     height: 100%;
-  }
+}
 
 body {
     display: flex;
@@ -26,7 +27,7 @@ footer {
     --color-pink: #ca02cc;
     --font-cursive: 'Indie Flower', cursive;
     --font-default: 'Noto Sans', sans-serif;
-    --shadow-normal: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    --shadow-normal: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
 }
 
 body {
@@ -66,7 +67,7 @@ a:hover {
     background: url(../media/chalk.jpg) no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 62.6px);
-    
+
 }
 
 #hero-text-container {
@@ -94,7 +95,7 @@ a:hover {
 }
 
 .callout-container {
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
@@ -105,21 +106,21 @@ a:hover {
     text-align: center;
     font-family: var(--font-cursive);
     font-weight: 900;
-    font-size: 2rem;;
+    font-size: 2rem;
+    ;
 }
 
 /* Text effects */
-.text-shadow
-{
-    text-shadow: 
+.text-shadow {
+    text-shadow:
         -1px -1px 0px #000,
-         0px -1px 0px #000,
-         1px -1px 0px #000,
-        -1px  0px 0px #000,
-         1px  0px 0px #000,
-        -1px  1px 0px #000,
-         0px  1px 0px #000,
-         1px  1px 0px #000;
+        0px -1px 0px #000,
+        1px -1px 0px #000,
+        -1px 0px 0px #000,
+        1px 0px 0px #000,
+        -1px 1px 0px #000,
+        0px 1px 0px #000,
+        1px 1px 0px #000;
 }
 
 .zoom-on-hover {
@@ -129,9 +130,9 @@ a:hover {
 }
 
 .zoom-on-hover:hover {
-      -webkit-transform: scale(1.2);
-          -ms-transform: scale(1.2);
-              transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 /* Messages */
@@ -143,7 +144,8 @@ a:hover {
 
 /* Buttons */
 
-.btn-check:focus+.btn, .btn:focus {
+.btn-check:focus+.btn,
+.btn:focus {
     outline: 0;
     box-shadow: none;
 }
@@ -166,7 +168,12 @@ a:hover {
 
 .btn-pink:hover {
     color: #fff;
-    background-color: #9e55d4;}
+    background-color: #9e55d4;
+}
+
+.btn {
+    width: 8rem;
+}
 
 
 /* Cards */
@@ -178,6 +185,16 @@ a:hover {
     border-bottom: 1px solid var(--color-pink);
 }
 
+.card-img-top {
+    height: 25vh;
+    object-fit: cover;
+}
+
+/* Forms */
+.form-group {
+    padding-bottom: 20px;
+}
+
 /* Modal */
 
 .card-footer ul {
@@ -187,16 +204,23 @@ a:hover {
 
 .card-footer li {
     position: relative;
-    padding-left: 2.5rem;  /* space to preserve indentation on wrap */
+    padding-left: 2.5rem;
+    /* space to preserve indentation on wrap */
 }
-  
+
 .card-footer li:before {
-    content: '';  /* placeholder for the SVG */
+    content: '';
+    /* placeholder for the SVG */
     position: absolute;
-    left: 0;  /* place the SVG at the start of the padding */
+    left: 0;
+    /* place the SVG at the start of the padding */
     width: 1.5rem;
     height: 1.5rem;
     background: url(../media/rainbow.svg) center;
     background-size: cover;
     transform: translate(0, 10%);
-  }
+}
+
+.card-footer.bg-white.border-0 {
+    padding-bottom: 1rem;
+}
