@@ -173,8 +173,30 @@ a:hover {
 
 .btn {
     width: 8rem;
+    background-color: #FB99FA;
+    border-color: #FB99FA;
+    color: #000;
 }
 
+input.btn.btn-default.btn-primary {
+    width: auto;
+}
+
+.btn-check:active+.btn-primary,
+.btn-check:checked+.btn-primary,
+.btn-primary.active,
+.btn-primary:active,
+.show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #FB99FA;
+    border-color: #FB99FA;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #FB99FA;
+    border-color: #FB99FA;
+}
 
 /* Cards */
 .card-container .card-text {
