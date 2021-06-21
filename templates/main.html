@@ -23,13 +23,19 @@
             <div class="col">
               <div class="card border-0">
                 <div class="card-body">
-                  <h5 class="card-title">{{venue.name}}</h5>
-                  <p class="card-text">{{venue.city}}, {{venue.country}}</p>
-                  <a href="{{url_for('add_review', id=venue.id)}}">Leave review</a>
+                    <h5 class="card-title">{{venue.name}}</h5>
+                    <p class="card-text">{{venue.city}}, {{venue.country}}</p>
+                    <a href="{{url_for('add_review', id=venue.id)}}">Leave review</a>
+                    {% if call_or_get(current_user.is_authenticated) %}
+                        {% if "Admin" in current_user.roles %}
+                        <a href="{{url_for('edit_venue', id=venue.id)}}">Update</a>
+                        <a href="{{url_for('delete_venue', id=venue.id)}}">Delete</a>
+                        {% endif %}
+                    {% endif %}
                 </div>
                 <div class="card-footer bg-white border-0">
                     <a href="#" class="btn btn-pink"><i class="far fa-question-circle"></i> More info</a>
-                    <a href="{{ venue.url }}" target="_blank" class="btn btn-primary"><i class="far fa-question-circle"></i> Link</a>
+                    <a href="{{ venue.url }}" target="_blank" rel="noopener" class="btn btn-primary"><i class="far fa-question-circle"></i> Link</a>
                 </div>
               </div>
             </div>

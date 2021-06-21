@@ -18,13 +18,13 @@
                     <!-- <div id="nameHelp" class="form-text">Please enter the name of the venue you wish to add.</div> -->
                 </div>
                 <div class="mb-3 form-floating">
-                    <select id="type" class="form-select" name="type">
+                    <select id="venue_type" class="form-select" name="venue_type">
                         <option disabled selected>...</option>
                         {% for type in sorted_types %}
                         <option value="{{type}}">{{type}}</option>
                         {% endfor %}
                     </select>
-                    <label for="type" class="form-label" aria-describedby="Address">Select Venue Type</label>
+                    <label for="venue_type" class="form-label" aria-describedby="Address">Select Venue Type</label>
                     <!-- <div id="typeHelp" class="form-text">Please select the venue type from the drop-down menu.</div> -->
                 </div>
                 <div class="mb-3 form-floating">
@@ -46,6 +46,11 @@
                     <input id="country" class="form-control" name="country" type="text" placeholder="Country" maxlength="200" required aria-describedby="Country">
                     <label for="country" class="form-label">Country</label>
                     <!-- <div id="countryHelp" class="form-text">Please enter the country of the venue you wish to add.</div> -->
+                </div>
+                <div class="mb-3 form-floating">
+                    <input id="url" class="form-control" name="url" type="url" placeholder="URL" maxlength="250" aria-describedby="URL">
+                    <label for="url" class="form-label">URL</label>
+                    <!-- <div id="urlHelp" class="form-text">Please enter the URL (website address) of the venue you wish to add.</div> -->
                 </div>
                 <button class="btn btn-pink" type="submit" name="action">Add Venue</button>
             </form>
