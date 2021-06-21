@@ -1,38 +1,43 @@
 {% extends "flask_user_layout.html" %}
 {% block content %}
 <div class="container">
-    <h6>
+    <div class="crumbs-container text-center pb-4">
+        <div class="my-2">
+            {% if call_or_get(current_user.is_authenticated) %}
+            <small>Home</small>
+            {% else %}
+            <small><a href="{{ url_for('home_page')}}">Home</a></small>
+            {% endif %}
+            <small>&nbsp; > &nbsp;<a href="{{ url_for('main_page') }}">Member's Page</a></small>
+        </div>
         {% if call_or_get(current_user.is_authenticated) %}
-        Home
-        {% else %}
-        <a href="{{ url_for('home_page')}}">Home</a>
+        <div class="my-2">
+            <a href="{{ url_for('add_venue')}}" class="btn btn-yellow">Add Venue</a>
+        </div>
         {% endif %}
-        &nbsp; > &nbsp;<a href="{{ url_for('main_page') }}">Member's Page</a>
-    </h6>
-    {% if call_or_get(current_user.is_authenticated) %}
-    <a href="{{ url_for('add_venue')}}">Add Venue</a>
-    {% endif %}
-    <table>
-        <tr class="white-text blue darken-4">
-            <th>Name</th>
-            <th>Type</th>
-            <th>Address</th>
-            <th>Post Code</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>URL</th>
-        </tr>
+    </div>
+
+    {% if venues_list|length > 0 %}
+    <div class="row row-cols-1 row-cols-md-2 card-container pt-4">
         {% for venue in venues_list %}
-        <tr class="{{loop.cycle('white','blue-grey lighten-5')}}">
-            <td><a href="{{url_for('add_review', id=venue.id)}}">{{venue.name}}</a></td>
-            <td>{{venue.type}}</td>
-            <td>{{venue.address}}</td>
-            <td>{{venue.post_code}}</td>
-            <td>{{venue.city}}</td>
-            <td>{{venue.country}}</td>
-            <td>{{venue.url}}</td>
-        </tr>
+            <div class="col">
+              <div class="card border-0">
+                <div class="card-body">
+                  <h5 class="card-title">{{venue.name}}</h5>
+                  <p class="card-text">{{venue.city}}, {{venue.country}}</p>
+                  <a href="{{url_for('add_review', id=venue.id)}}">Leave review</a>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <a href="#" class="btn btn-pink"><i class="far fa-question-circle"></i> More info</a>
+                    <a href="{{ venue.url }}" target="_blank" class="btn btn-primary"><i class="far fa-question-circle"></i> Link</a>
+                </div>
+              </div>
+            </div>
         {% endfor %}
-    </table>
+        </div>
+    {% else %}
+        <h1>No venues!</h1>
+    {% endif %}
 </div>
 {% endblock %}
+

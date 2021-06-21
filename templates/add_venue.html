@@ -3,48 +3,53 @@
 {% block content %}
 
 <div class="container">
-    <form action="{{ url_for('save_venue') }}" method="POST" class="col s12">
-        <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
-        <div class="mb-3 form-check">
-            <label for="name" class="form-label">Venue Name</label>
-            <input id="name" name="name" type="text" maxlength="200" required aria-describedby="Venue Name" required>
-            <div id="nameHelp" class="form-text">Please enter the name of the venue you wish to add.</div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-8 mx-auto mb-3">
+            <h2>Add Venue</h2>
         </div>
-        <div class="mb-3 form-check">
-            <label for="type" class="form-label" aria-describedby="Address">Select Venue Type</label>
-            <select id="type" name="type">
-                <option disabled selected>Please select venue type.</option>
-                {% for type in sorted_types %}
-                <option value="{{type}}">{{type}}</option>
-                {% endfor %}
-            </select>
-            <div id="typeHelp" class="form-text">Please select the venue type from the drop-down menu.</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-8 mx-auto">
+            <form action="{{ url_for('save_venue') }}" method="POST" class="col s12">
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                <div class="mb-3 form-floating">
+                    <input id="name" class="form-control" name="name" type="text" placeholder="Name" maxlength="200" autocomplete="off" required aria-describedby="Venue Name" required>
+                    <label for="name">Venue Name</label>
+                    <!-- <div id="nameHelp" class="form-text">Please enter the name of the venue you wish to add.</div> -->
+                </div>
+                <div class="mb-3 form-floating">
+                    <select id="type" class="form-select" name="type">
+                        <option disabled selected>...</option>
+                        {% for type in sorted_types %}
+                        <option value="{{type}}">{{type}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="type" class="form-label" aria-describedby="Address">Select Venue Type</label>
+                    <!-- <div id="typeHelp" class="form-text">Please select the venue type from the drop-down menu.</div> -->
+                </div>
+                <div class="mb-3 form-floating">
+                    <input id="address" class="form-control" name="address" type="text" placeholder="Address" maxlength="200" required aria-describedby="Address">
+                    <label for="address" class="form-label">Address</label>
+                    <!-- <div id="addressHelp" class="form-text">Please enter the address of the venue you wish to add.</div> -->
+                </div>
+                <div class="mb-3 form-floating">
+                    <input id="post_code" class="form-control" name="post_code" type="text" placeholder="Post Code" maxlength="200" required aria-describedby="Post Code">
+                    <label for="post_code" class="form-label">Post Code</label>
+                    <!-- <div id="postcodeHelp" class="form-text">Please enter the post code of the venue you wish to add.</div> -->
+                </div>
+                <div class="mb-3 form-floating">
+                    <input id="city" class="form-control" name="city" type="text" placeholder="City" maxlength="200" required aria-describedby="City">
+                    <label for="city" class="form-label">City</label>
+                    <!-- <div id="cityHelp" class="form-text">Please enter the city of the venue you wish to add.</div> -->
+                </div>
+                <div class="mb-3 form-floating">
+                    <input id="country" class="form-control" name="country" type="text" placeholder="Country" maxlength="200" required aria-describedby="Country">
+                    <label for="country" class="form-label">Country</label>
+                    <!-- <div id="countryHelp" class="form-text">Please enter the country of the venue you wish to add.</div> -->
+                </div>
+                <button class="btn btn-pink" type="submit" name="action">Add Venue</button>
+            </form>
         </div>
-        <div class="mb-3 form-check">
-            <label for="address" class="form-label">Address</label>
-            <input id="address" name="address" type="text" maxlength="200" required aria-describedby="Address">
-            <div id="addressHelp" class="form-text">Please enter the address of the venue you wish to add.</div>
-        </div>
-        <div class="mb-3 form-check">
-            <label for="post_code" class="form-label">Post Code</label>
-            <input id="post_code" name="post_code" type="text" maxlength="200" required aria-describedby="Post Code">
-            <div id="postcodeHelp" class="form-text">Please enter the post code of the venue you wish to add.</div>
-        </div>
-        <div class="mb-3 form-check">
-            <label for="city" class="form-label">City</label>
-            <input id="city" name="city" type="text" maxlength="200" required aria-describedby="City">
-            <div id="cityHelp" class="form-text">Please enter the city of the venue you wish to add.</div>
-        </div>
-        <div class="mb-3 form-check">
-            <label for="country" class="form-label">Country</label>
-            <input id="country" name="country" type="text" maxlength="200" required aria-describedby="Country">
-            <div id="countryHelp" class="form-text">Please enter the country of the venue you wish to add.</div>
-        </div>
-
-        <div class="row">
-            <button class="btn btn-primary" type="submit" name="action">Add Venue
-            </button>
-        </div>
-    </form>
+    </div>
 </div>
 {% endblock %}
