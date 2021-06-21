@@ -111,24 +111,50 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <!-- Modal content -->
-        <div class="modal fade" id="modal-{{ venue.id }}" tabindex="-1" aria-labelledby="modal-{{ venue.id }}-label"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-{{ venue.id }}-label">Reviews for {{ venue.name }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {% for review in reviews_list %}
-                        {{ review.id }}
-                        {% endfor %}
-                    </div>
-                    <div class="modal-footer">
-                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                        <a href="{{url_for('add_review', id=venue.id)}}">Leave review</a>
+            <!-- Modal content -->
+            <div class="modal fade" id="modal-{{ venue.id }}" tabindex="-1" aria-labelledby="modal-{{ venue.id }}-label" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-{{ venue.id }}-label">
+                                <a href="{{url_for('add_review', id=venue.id)}}"><i class="fas fa-plus-circle"></i></a> Reviews for {{ venue.name }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% for review in review_list if review.venue_id == venue.id %}
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <blockquote class="blockquote mb-0">
+                                        <p>{{ review.text_field }}</p>
+                                        <footer class="blockquote-footer">{{ review.user }}</footer>
+                                    </blockquote>
+                                </div>
+                                <div class="card-footer bg-white">
+                                    <ul>
+                                        {% if review.rainbow_flag %}
+                                            <li><small>Rainbow flag all year!</small></li>
+                                        {% elif review.welcoming %}
+                                            <li><small>Welcoming, accessible & safe</small></li>
+                                        {% elif review.program_focus %}
+                                            <li><small>LGBTQ programme</small></li>
+                                        {% elif review.tags_LGBTQ %}
+                                            <li><small>LGBTQ+</small></li>
+                                        {% elif review.tags_Trans %}
+                                            <li><small>Trans friendly</small></li>
+                                        {% elif review.tags_Youth %}
+                                            <li><small>Youth friendly</small></li>
+                                        {% elif review.tags_Shelter %}
+                                            <li><small>Provides shelter</small></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{url_for('add_review', id=venue.id)}}" class="btn btn-pink">Leave review</a>
+                        </div>
                     </div>
                 </div>
             </div>

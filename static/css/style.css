@@ -177,3 +177,26 @@ a:hover {
 .crumbs-container {
     border-bottom: 1px solid var(--color-pink);
 }
+
+/* Modal */
+
+.card-footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card-footer li {
+    position: relative;
+    padding-left: 2.5rem;  /* space to preserve indentation on wrap */
+}
+  
+.card-footer li:before {
+    content: '';  /* placeholder for the SVG */
+    position: absolute;
+    left: 0;  /* place the SVG at the start of the padding */
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(../media/rainbow.svg) center;
+    background-size: cover;
+    transform: translate(0, 10%);
+  }
