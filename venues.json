@@ -21,7 +21,7 @@
     },
     {
         "name": "Bloc Bar",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "18 Kentish Town Rd",
         "post_code": "NW1 9NZ",
         "city": "London",
@@ -51,7 +51,7 @@
     },
     {
         "name": "Friendly Society,",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "79 Wardour St",
         "post_code": "W1D 6QB",
         "city": "London",
@@ -181,7 +181,7 @@
     },
     {
         "name": "The Loft",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "43 Bromsgrove St",
         "post_code": "B56RG",
         "city": "Birmingham",
@@ -191,7 +191,7 @@
     },
     {
         "name": "Missing",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "48 Bromsgrove St",
         "post_code": "B5 6NU",
         "city": "Birmingham",
@@ -201,7 +201,7 @@
     },
     {
         "name": "The street",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "2b Picardy Pl",
         "post_code": "EH1 3JT",
         "city": "Edinburgh",
@@ -241,7 +241,7 @@
     },
     {
         "name": "The Salty Dog",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "9 Crichton St",
         "post_code": "DD1 3AP",
         "city": "Dundee",
@@ -261,7 +261,7 @@
     },
     {
         "name": "Navy Bar",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "27 Stanley St",
         "post_code": "L1 3AA",
         "city": "Liverpool",
@@ -311,7 +311,7 @@
     },
     {
         "name": "Sea Life",
-        "venue_type": "OTHER",
+        "venue_type": "Other",
         "address": "Marine Parade",
         "post_code": "BN2 1TB",
         "city": "Brighton",
@@ -341,7 +341,7 @@
     },
     {
         "name": "The Golden Cross",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "The Golden Cross, 283 Hayes Bridge Rd",
         "post_code": "CF10 1GH",
         "city": "Cardiff",
@@ -351,7 +351,7 @@
     },
     {
         "name": "Minsky’s Showbar",
-        "venue_type": "Bar",
+        "venue_type": "Bar or Pub",
         "address": "42 Charles Street",
         "post_code": "CF10 2GE",
         "city": "Cardiff",

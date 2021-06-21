@@ -97,7 +97,7 @@ class User(db.Document, UserMixin):
 # Venue Class (Collection) containing the fields related to the venues that users can view, create, and update.
 class Venue(db.Document):
     name = db.StringField(default="")
-    venue_type = db.StringField(choices=["Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"])
+    venue_type = db.StringField(choices=["Bar or Pub", "Restaurant", "Club", "Theatre", "Health", "Gym", "Hotel", "Other", "Church", "Group", "Wedding Venue", "Neighbourhood", "Market", "Cabaret", "Café", "Museum"])
     address = db.StringField(default="")
     post_code = db.StringField(default="")
     city = db.StringField(default="")
@@ -121,9 +121,9 @@ class Review(db.Document):
     venue_id = db.ObjectIdField(Venue)
 
     # LGBTQ+ Toggles/Switches/Tickboxes
-    pinkwashing = db.BooleanField(default=False)
-    identity = db.BooleanField(default=False)
-    inclusive = db.BooleanField(default=False)
+    rainbow_flag = db.BooleanField(default=False)
+    welcoming = db.BooleanField(default=False)
+    program_focus = db.BooleanField(default=False)
 
     # Relationships (Tags: default)
     tags_LGBTQ = db.BooleanField(default=False)
@@ -153,8 +153,6 @@ def home_page():
     At first access/touch the user 'admin' is created using environment variables for the password and email address.
     The admin user creation is here as it will be created twice on Heroku if placed in the main code.
     """
-    if current_user.is_authenticated:
-        return redirect(url_for("main_page"))
 
     # Create admin user as first/default user, if admin does not exist.
     # Password and e-mail are set using environment variables.
@@ -205,7 +203,7 @@ def add_venue():
     sorted_tags = sorted(tags)
     print(sorted_tags)
 
-    types = {"Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"}
+    types = {"Bar or Pub", "Restaurant", "Club", "Theatre", "Health", "Gym", "Hotel", "Other", "Church", "Group", "Wedding Venue", "Neighbourhood", "Market", "Cabaret", "Café", "Museum"}
     sorted_types = sorted(types)
     print(sorted_types)
 
@@ -246,7 +244,7 @@ def save_venue():
 @app.errorhandler(CSRFError)
 def edit_venue(id):
     venue = Venue.objects.get(id=id)
-    types = {"Bar or Pub", "Restaurant", "Club", "Theater", "Health", "Gym", "Hotel", "Other"}
+    types = {"Bar or Pub", "Restaurant", "Club", "Theatre", "Health", "Gym", "Hotel", "Other", "Church", "Group", "Wedding Venue", "Neighbourhood", "Market", "Cabaret", "Café", "Museum"}
     sorted_types = sorted(types)
 
     return render_template("edit_venue.html", venue=venue, sorted_types=sorted_types)
@@ -319,9 +317,9 @@ def save_review(id):
     review = Review(
         text_field=request.form.get("text_field"),
         venue_id=id,
-        pinkwashing=request.form.get("pinkwashing"),
-        identity=request.form.get("identity"),
-        inclusive=request.form.get("inclusive"),
+        rainbow_flag=request.form.get("rainbow_flag"),
+        welcoming=request.form.get("welcoming"),
+        program_focus=request.form.get("program_focus"),
         tags_LGBTQ=request.form.get("tags_LGBTQ"),
         tags_Trans=request.form.get("tags_Trans"),
         tags_Youth=request.form.get("tags_Youth"),
