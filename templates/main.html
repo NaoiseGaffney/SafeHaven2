@@ -82,9 +82,9 @@
                 <img src="/static/media/other.jpg" class="card-img-top" alt="Other">
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{venue.name}}</h5>
-                    <p class="card-text">{{venue.city}}, {{venue.country}}</p>
-                    <p class="card-text">{{venue.address}}, {{venue.post_code}}, {{venue.city}}, {{venue.country}}</p>
+                    <h5 class="card-title">{{venue.name |title}}</h5>
+                    <p class="card-text">{{venue.city| title}}, {{venue.country| title}}</p>
+                    <p class="card-text">{{venue.address| title}}, {{venue.post_code| title}}, {{venue.city| title}}, {{venue.country| title}}</p>
 
                     {% if call_or_get(current_user.is_authenticated) %}
                     {% if "Admin" in current_user.roles %}
