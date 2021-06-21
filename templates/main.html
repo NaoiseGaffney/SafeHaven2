@@ -1,4 +1,5 @@
 {% extends "flask_user_layout.html" %}
+{% block extra_title %} - Venues{% endblock %}
 {% block content %}
 <div class="container">
     <div class="crumbs-container text-center pb-4">
@@ -36,8 +37,32 @@
                 <div class="card-footer bg-white border-0">
                     <a href="#" class="btn btn-pink"><i class="far fa-question-circle"></i> More info</a>
                     <a href="{{ venue.url }}" target="_blank" rel="noopener" class="btn btn-primary"><i class="far fa-question-circle"></i> Link</a>
+                    <!-- Modal trigger -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-{{ venue.id }}">
+                        Reviews
+                      </button>
                 </div>
               </div>
+            </div>
+            <!-- Modal content -->
+            <div class="modal fade" id="modal-{{ venue.id }}" tabindex="-1" aria-labelledby="modal-{{ venue.id }}-label" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="modal-{{ venue.id }}-label">Reviews for {{ venue.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% for review in reviews_list %}
+                            {{ review.id }}
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <a href="{{url_for('add_review', id=venue.id)}}">Leave review</a>
+                    </div>
+                </div>
+                </div>
             </div>
         {% endfor %}
         </div>
