@@ -183,13 +183,15 @@ def home_page():
 
 # --- // CRUD for Venue
 @app.route("/main")
-def main_page():
+@app.route("/main/<int:page>")
+def main_page(page=1):
     """
     The "R" in CRUD, a list of all venues.
     """
     venues_list = Venue.objects()
     review_list = Review.objects()
-    return render_template("main.html", venues_list=venues_list, review_list=review_list)
+    venues_list_pagination = venues_list.paginate(page=page, per_page=4)
+    return render_template("main.html", review_list=review_list, venues_list_pagination=venues_list_pagination, page_prev=(page - 1), page_next=(page + 1))
 
 
 @app.route("/add_venue")

@@ -18,9 +18,40 @@
         {% endif %}
     </div>
 
-    {% if venues_list|length > 0 %}
+    {# Macro for creating navigation links #}
+    {% macro render_navigation(pagination, endpoint) %}
+    <div class="pagination">Page #:
+        {% if page_prev == 0 %}
+        &lt;&nbsp;
+        {% else %}
+        <a href="{{ url_for(endpoint, page=page_prev) }}">&lt;&nbsp;</a>
+        {% endif %}
+        {% if pagination.has_next %}
+        <a href="{{ url_for(endpoint, page=page_next) }}">&gt;&nbsp;</a>
+        {% else %}
+        &gt;&nbsp;
+        {% endif %}
+        {% for page in pagination.iter_pages() %}
+        {% if page %}
+        {% if page != pagination.page %}
+        <a href="{{ url_for(endpoint, page=page) }}">{{ page }}</a>
+        {% else %}
+        <span style="background-color: #a10d3e; color: white; padding: 1px 5px;">{{ page }}</span>
+        {% endif %}
+        {% else %}
+        <span class="ellipsis">…</span>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endmacro %}
+
+    {{ render_navigation(venues_list_pagination, 'main_page') }}
+
+    {% if venues_list_pagination.items %}
+
+    {% if venues_list_pagination.items|length > 0 %}
     <div class="row row-cols-1 row-cols-md-2 card-container pt-4">
-        {% for venue in venues_list %}
+        {% for venue in venues_list_pagination.items %}
         <div class="col">
             <div class="card border-0">
                 {% if venue.venue_type == "Bar or Pub" %}
@@ -106,6 +137,7 @@
     </div>
     {% else %}
     <h1>No venues!</h1>
+    {% endif %}
     {% endif %}
 </div>
 {% endblock %}
