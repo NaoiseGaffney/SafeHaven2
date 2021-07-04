@@ -382,7 +382,7 @@ def load_venues():
                 "city": {"type": "string"},
                 "country": {"type": "string"},
                 "lat": {"type": "string"},
-                "lon": {"type": "string"},
+                "lng": {"type": "string"},
         },
     }
 
