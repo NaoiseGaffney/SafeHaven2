@@ -131,3 +131,4 @@ dmypy.json
 # Safe Haven
 settings.json
 .vscode
+HerokuConfigVars.txt
