@@ -7,7 +7,8 @@
         "city": "London",
         "country": "England",
         "lat": "51.5136",
-        "lon": "0.1365"
+        "lng": "0.1365",
+        "link": ""
     },
     {
         "name": "Electric Ballroom",
@@ -17,7 +18,7 @@
         "city": "London",
         "country": "England",
         "lat": "51.5397",
-        "lon": "0.1430",
+        "lng": "0.1430",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjA9KSO2ajxAhWOYcAKHSk2ChQQFjAAegQIChAD&url=https%3A%2F%2Felectricballroom.co.uk%2F&usg=AOvVaw2STvRVd8OpNmSL_BhKNapo"
     },
     {
@@ -28,7 +29,8 @@
         "city": "London",
         "country": "England",
         "lat": "51.5400",
-        "lon": "0.1421"
+        "lng": "0.1421",
+        "link": ""
     },
     {
         "name": "Proud",
@@ -38,7 +40,7 @@
         "city": "London",
         "country": "England",
         "lat": "51.5115",
-        "lon": "0.0811",
+        "lng": "0.0811",
         "link": "https://proudcabaret.com/"
     },
     {
@@ -49,7 +51,7 @@
         "city": "London",
         "country": "England",
         "lat": "51.5151",
-        "lon": "0.1309",
+        "lng": "0.1309",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiSv6Kv2qjxAhXlRUEAHcTYD40QFjAAegQIBBAD&url=http%3A%2F%2Fwww.g-a-y.co.uk%2F&usg=AOvVaw0vvIepdFBBCRuB2B-LHSoX"
     },
     {
@@ -60,7 +62,7 @@
         "city": "London",
         "country": "England",
         "lat": "51.5124",
-        "lon": "0.1333",
+        "lng": "0.1333",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjMo4vO2qjxAhWUecAKHWldCwEQFjABegQIAhAE&url=https%3A%2F%2Fwww.visitlondon.com%2Fthings-to-do%2Fplace%2F606532-friendly-society&usg=AOvVaw0ypwRS-BmHRS0Ts5OVZfE-"
     },
     {
@@ -71,7 +73,7 @@
         "city": "London",
         "country": "England",
         "lat": "51.4632",
-        "lon": "0.1348",
+        "lng": "0.1348",
         "link": "https://www.the2brewers.com/london"
     },
     {
@@ -82,7 +84,7 @@
         "city": "Dublin",
         "country": "Ireland",
         "lat": "53.6409",
-        "lon": "6.2525",
+        "lng": "6.2525",
         "link": "https://www.nationalgallery.ie/"
     },
     {
@@ -93,7 +95,7 @@
         "city": "Dublin",
         "country": "Ireland",
         "lat": "53.3484",
-        "lon": "6.2572",
+        "lng": "6.2572",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjAjMbE26jxAhVV8OAKHbk5DAwQFjAAegQIBBAD&url=https%3A%2F%2Fwww.abbeytheatre.ie%2F&usg=AOvVaw0M8Z0aXZ7e8tNa2aMYZrpH"
     },
     {
@@ -104,7 +106,7 @@
         "city": "Manchester",
         "country": "England",
         "lat": "53.4764",
-        "lon": "2.2366",
+        "lng": "2.2366",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjjzLrY26jxAhXV8eAKHZkGC7cQFjAAegQIAhAD&url=https%3A%2F%2Fwww.richmondtearooms.com%2F&usg=AOvVaw3btpn9hWTp1641Q8hW5IGn"
     },
     {
@@ -115,7 +117,8 @@
         "city": "Manchester",
         "country": "England",
         "lat": "53.4825",
-        "lon": "2.2345"
+        "lng": "2.2345",
+        "link": ""
     },
     {
         "name": "Bury Market",
@@ -125,7 +128,7 @@
         "city": "Manchester",
         "country": "England",
         "lat": "53.5934",
-        "lon": "-2.2966",
+        "lng": "-2.2966",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwi3o-T226jxAhWk2eAKHTFFAQwQFjAAegQIBxAD&url=https%3A%2F%2Fwww.burymarket.com%2F&usg=AOvVaw3CwddcCRnJrkx5MHkPnE7v"
     },
     {
@@ -136,7 +139,7 @@
         "city": "Dublin",
         "country": "Ireland",
         "lat": "53.3390",
-        "lon": "6.2560",
+        "lng": "6.2560",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiZ9qOO3KjxAhV09OAKHURSBRIQFjAAegQIAhAD&url=https%3A%2F%2Fwww.theshelbourne.com%2F&usg=AOvVaw2JikWIiLPmNNwdjnMaqgro"
     },
     {
@@ -147,7 +150,7 @@
         "city": "Galway",
         "country": "Ireland",
         "lat": "53.2817",
-        "lon": "9.0321",
+        "lng": "9.0321",
         "link": "https://www.theghotel.ie/"
     },
     {
@@ -158,7 +161,7 @@
         "city": "Galway",
         "country": "Ireland",
         "lat": "53.2736",
-        "lon": "9.0433",
+        "lng": "9.0433",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjyroux3KjxAhUNExQKHUNqCg0QFjABegQIBBAD&url=https%3A%2F%2Fwww.thegalmont.com%2Fen%2F&usg=AOvVaw1nJK396wh-WNhJtKIwUahy"
     },
     {
@@ -169,7 +172,7 @@
         "city": "Torquay",
         "country": "England",
         "lat": "50.4685",
-        "lon": "3.5342",
+        "lng": "3.5342",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwitkJfH3KjxAhUNDxQKHWV3BToQFjABegQIAhAE&url=https%3A%2F%2Fwww.transunite.co.uk%2Fgroup%2Ftransfigurations%2F&usg=AOvVaw2Y-WSyd8Z3w-wt2nPwQH_E"
     },
     {
@@ -180,7 +183,8 @@
         "city": "Exeter",
         "country": "England",
         "lat": "50.7237",
-        "lon": "3.5259"
+        "lng": "3.5259",
+        "link": ""
     },
     {
         "name": "Hurst Street",
@@ -190,7 +194,8 @@
         "city": "Birmingham",
         "country": "England",
         "lat": "52.4743",
-        "lon": "1.8972"
+        "lng": "1.8972",
+        "link": ""
     },
     {
         "name": "The Loft",
@@ -200,7 +205,7 @@
         "city": "Birmingham",
         "country": "England",
         "lat": "52.4732",
-        "lon": "1.8964",
+        "lng": "1.8964",
         "link": "https://www.theloftbrum.co.uk/"
     },
     {
@@ -211,7 +216,7 @@
         "city": "Birmingham",
         "country": "England",
         "lat": "52.4737",
-        "lon": "1.8960",
+        "lng": "1.8960",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj0nPyI3ajxAhUCcBQKHWDnCA4QFjAAegQIAhAD&url=https%3A%2F%2Fwww.missingbar.co.uk%2F&usg=AOvVaw3xPT58d8KryHytMXMZVG3v"
     },
     {
@@ -222,7 +227,7 @@
         "city": "Edinburgh",
         "country": "Scotland",
         "lat": "55.9533",
-        "lon": "3.1883",
+        "lng": "3.1883",
         "link": "http://www.thestreetbaredinburgh.co.uk/TheStreet/Covid_Times.html"
     },
     {
@@ -233,7 +238,7 @@
         "city": "Edinburgh",
         "country": "Scotland",
         "lat": "55.9567",
-        "lon": "3.1856",
+        "lng": "3.1856",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjJ-vWr3ajxAhUCilwKHYg0DX8QFjAAegQIBhAD&url=https%3A%2F%2Fwww.theglasshousehotel.co.uk%2F&usg=AOvVaw1eRnEVW8JQwqnYJH-WQhZs"
     },
     {
@@ -244,7 +249,7 @@
         "city": "Edinburgh",
         "country": "Scotland",
         "lat": "55.8592",
-        "lon": "4.2497",
+        "lng": "4.2497",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjekO-83ajxAhUOmhQKHQFRBEEQFjAAegQIAhAD&url=https%3A%2F%2Fwww.delmonicas.co.uk%2F&usg=AOvVaw3g6mx4Vyn8OyQ27D1NZ82M"
     },
     {
@@ -255,7 +260,8 @@
         "city": "Edinburgh",
         "country": "Scotland",
         "lat": "55.8595",
-        "lon": "4.2485"
+        "lng": "4.2485",
+        "link": ""
     },
     {
         "name": "The Salty Dog",
@@ -265,7 +271,8 @@
         "city": "Dundee",
         "country": "Scotland",
         "lat": "56.4599",
-        "lon": "2.9702"
+        "lng": "2.9702",
+        "link": ""
     },
     {
         "name": "News from Nowhere",
@@ -275,7 +282,7 @@
         "city": "Liverpool",
         "country": "England",
         "lat": "53.4026",
-        "lon": "2.9775",
+        "lng": "2.9775",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjTi5ji3ajxAhWNHxQKHYwIDBUQFjAAegQIBxAD&url=https%3A%2F%2Fwww.newsfromnowhere.org.uk%2F&usg=AOvVaw2th9r6uwmhUKNdK6kYEWZe"
     },
     {
@@ -286,7 +293,8 @@
         "city": "Liverpool",
         "country": "England",
         "lat": "53.4075",
-        "lon": "2.9873"
+        "lng": "2.9873",
+        "link": ""
     },
     {
         "name": "OMG",
@@ -296,7 +304,7 @@
         "city": "Liverpool",
         "country": "England",
         "lat": "53.4068",
-        "lon": "2.9882",
+        "lng": "2.9882",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjJ-OX63ajxAhUfCGMBHdfYDPYQFjAAegQIAxAD&url=https%3A%2F%2Fwww.omgclubs.com%2Fvenues%2Fomg-liverpool&usg=AOvVaw3qMbMJS9VEDZjczPyqfzTB"
     },
     {
@@ -307,7 +315,7 @@
         "city": "Brighton",
         "country": "England",
         "lat": "50.8196",
-        "lon": "0.1293",
+        "lng": "0.1293",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj94dGJ3qjxAhV6BWMBHWWsCxEQFjABegQIAxAD&url=https%3A%2F%2Fblanchhouse.co.uk%2F&usg=AOvVaw36jeLppyrfzH0zXynXoYh0"
     },
     {
@@ -318,7 +326,7 @@
         "city": "Brighton",
         "country": "England",
         "lat": "50.8201",
-        "lon": "0.1365",
+        "lng": "0.1365",
         "link": "https://www.revenge.co.uk/"
     },
     {
@@ -329,7 +337,7 @@
         "city": "Brighton",
         "country": "England",
         "lat": "50.8197",
-        "lon": "0.1329",
+        "lng": "0.1329",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwid-rik3qjxAhUR5uAKHT7ICRIQFjABegQIBBAD&url=https%3A%2F%2Flegendsbrighton.com%2Fsite%2F&usg=AOvVaw3uqomcQz3ZdHj-bTXp9ysE"
     },
     {
@@ -340,7 +348,7 @@
         "city": "Brighton",
         "country": "England",
         "lat": "50.8196",
-        "lon": "0.1358",
+        "lng": "0.1358",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiFr9W03qjxAhXB0eAKHT3rDAQQFjAAegQIBxAD&url=https%3A%2F%2Fwww.visitsealife.com%2Fbrighton%2F&usg=AOvVaw3ql5nLcCQ0PuHmoC6ym3_6"
     },
     {
@@ -351,7 +359,7 @@
         "city": "Brighton",
         "country": "England",
         "lat": "50.8257",
-        "lon": "0.1400",
+        "lng": "0.1400",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwilhr_C3qjxAhXC5-AKHaF-AEsQFjAAegQICBAD&url=http%3A%2F%2Fwww.paintingpotterycafe.co.uk%2F&usg=AOvVaw3Pcin44V9P3StLEAy2-qCK"
     },
     {
@@ -362,7 +370,7 @@
         "city": "Brighton",
         "country": "England",
         "lat": "50.8180",
-        "lon": "0.1117",
+        "lng": "0.1117",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiP-fXZ3qjxAhWeAWMBHd4HA8wQFjABegQIAhAE&url=https%3A%2F%2Fmarlboroughproductions.org.uk%2Ftrans-pride-brighton-pink-fringe-artist-callout%2F&usg=AOvVaw34jCwVYU9nWC2HU1sWdOgE"
     },
     {
@@ -373,7 +381,8 @@
         "city": "Cardiff",
         "country": "Wales",
         "lat": "51.4771",
-        "lon": "3.1743"
+        "lng": "3.1743",
+        "link": ""
     },
     {
         "name": "Minsky’s Showbar",
@@ -383,7 +392,7 @@
         "city": "Cardiff",
         "country": "Wales",
         "lat": "51.4807",
-        "lon": "3.1737",
+        "lng": "3.1737",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjCl96V36jxAhVD7OAKHeJTChIQFjAAegQIAhAD&url=https%3A%2F%2Fwww.minskys-showbar.co.uk%2F&usg=AOvVaw2Rk5coO5dak2kkGEsrNUeK"
     },
     {
@@ -394,7 +403,7 @@
         "city": "Cardiff",
         "country": "Wales",
         "lat": "51.4955",
-        "lon": "3.1793",
+        "lng": "3.1793",
         "link": "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwi_hZSl36jxAhXC4uAKHWsTAVYQFjAAegQICBAD&url=http%3A%2F%2Fwww.stagcoffeecardiff.com%2F&usg=AOvVaw1Vv63hX7YDEaju0qm3Vl6z"
     },
     {
@@ -405,7 +414,7 @@
         "city": "Cardiff",
         "country": "Wales",
         "lat": "51.4836",
-        "lon": "3.1767",
+        "lng": "3.1767",
         "link": "https://www.parkplazacardiff.com/"
     }
 ]
