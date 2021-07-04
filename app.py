@@ -102,9 +102,9 @@ class Venue(db.Document):
     post_code = db.StringField(default="")
     city = db.StringField(default="")
     country = db.StringField(default="")
-    url = db.StringField(default="")
     lat = db.StringField(default="")
-    lon = db.StringField(default="")
+    lng = db.StringField(default="")
+    link = db.StringField(default="")
     user = db.StringField(default="admin")
 
     meta = {
@@ -383,6 +383,7 @@ def load_venues():
                 "country": {"type": "string"},
                 "lat": {"type": "string"},
                 "lng": {"type": "string"},
+                "link": {"type": "string"},
         },
     }
 

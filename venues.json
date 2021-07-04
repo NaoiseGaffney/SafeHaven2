@@ -7,7 +7,8 @@
         "city": "London",
         "country": "England",
         "lat": "51.5136",
-        "lng": "0.1365"
+        "lng": "0.1365",
+        "link": ""
     },
     {
         "name": "Electric Ballroom",
@@ -28,7 +29,8 @@
         "city": "London",
         "country": "England",
         "lat": "51.5400",
-        "lng": "0.1421"
+        "lng": "0.1421",
+        "link": ""
     },
     {
         "name": "Proud",
@@ -115,7 +117,8 @@
         "city": "Manchester",
         "country": "England",
         "lat": "53.4825",
-        "lng": "2.2345"
+        "lng": "2.2345",
+        "link": ""
     },
     {
         "name": "Bury Market",
@@ -180,7 +183,8 @@
         "city": "Exeter",
         "country": "England",
         "lat": "50.7237",
-        "lng": "3.5259"
+        "lng": "3.5259",
+        "link": ""
     },
     {
         "name": "Hurst Street",
@@ -190,7 +194,8 @@
         "city": "Birmingham",
         "country": "England",
         "lat": "52.4743",
-        "lng": "1.8972"
+        "lng": "1.8972",
+        "link": ""
     },
     {
         "name": "The Loft",
@@ -255,7 +260,8 @@
         "city": "Edinburgh",
         "country": "Scotland",
         "lat": "55.8595",
-        "lng": "4.2485"
+        "lng": "4.2485",
+        "link": ""
     },
     {
         "name": "The Salty Dog",
@@ -265,7 +271,8 @@
         "city": "Dundee",
         "country": "Scotland",
         "lat": "56.4599",
-        "lng": "2.9702"
+        "lng": "2.9702",
+        "link": ""
     },
     {
         "name": "News from Nowhere",
@@ -286,7 +293,8 @@
         "city": "Liverpool",
         "country": "England",
         "lat": "53.4075",
-        "lng": "2.9873"
+        "lng": "2.9873",
+        "link": ""
     },
     {
         "name": "OMG",
@@ -373,7 +381,8 @@
         "city": "Cardiff",
         "country": "Wales",
         "lat": "51.4771",
-        "lng": "3.1743"
+        "lng": "3.1743",
+        "link": ""
     },
     {
         "name": "Minsky’s Showbar",
